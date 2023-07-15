@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThemeHelpers {
-  static TextTheme? textThemes;
+  // static TextTheme? textThemes;
   static const dARKTHEMETEXTCOLOR = Colors.white;
   // static const _lIGHTTHEMETEXTCOLOR = Colors.black;
   static const primaryColor = ColorsConstant.green1; //Colors.amber;

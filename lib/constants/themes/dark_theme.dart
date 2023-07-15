@@ -55,17 +55,6 @@ class DarkTheme {
       ThemeHelpers.primaryColor,
       ThemeHelpers.primaryColorLighter,
     ),
-    // textTheme: TextTheme(
-    //   displayLarge: ThemeHelpers.textTheme(56.0),
-    //   displayMedium: ThemeHelpers.textTheme(52.0),
-    //   displaySmall: ThemeHelpers.textTheme(48.0),
-    //   headlineMedium: ThemeHelpers.textTheme(44.0),
-    //   headlineSmall: ThemeHelpers.textTheme(40.0),
-    //   titleLarge: ThemeHelpers.textTheme(36.0),
-    //   titleMedium: ThemeHelpers.textTheme(32.0),
-    //   titleSmall: ThemeHelpers.textTheme(28.0),
-    //   labelLarge: ThemeHelpers.textTheme(24.0),
-    // ),
     textTheme: TextTheme(
       displayLarge: ThemeHelpers.textTheme(36.0),
       displayMedium: ThemeHelpers.textTheme(32.0),

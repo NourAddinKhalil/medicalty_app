@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+
 import 'package:medicalty/bindings/main_binding.dart';
 import 'package:medicalty/constants/themes/dark_theme.dart';
 import 'package:medicalty/constants/themes/light_theme.dart';
@@ -8,6 +11,12 @@ import 'package:medicalty/controllers/screen_controllers/theme_controller.dart';
 import 'package:medicalty/utiles/custom_loading.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MyApp());
 }
 
@@ -16,9 +25,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(390, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, _) {
+        return const App();
+      },
+    );
+  }
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return GetBuilder<ThemeController>(
       init: ThemeController(),
-      autoRemove: false,
+      // autoRemove: false,
       builder: (theme) {
         return GlobalLoaderOverlay(
           useDefaultLoading: false,
@@ -26,17 +51,16 @@ class MyApp extends StatelessWidget {
             noBackColor: false,
           ),
           child: GetMaterialApp(
-            useInheritedMediaQuery: true,
             // locale: DevicePreview.locale(context),
             // builder: DevicePreview.appBuilder,
-            title: 'Constractor',
-            // getPages: AppRouter.routes,
+            title: 'Medicalty',
+            // getPages: const [], //AppRouter.routes,
             debugShowCheckedModeBanner: false,
             themeMode: theme.themeMode,
             theme: LightTheme.lightTheme,
             darkTheme: DarkTheme.darkTheme,
             initialBinding: MainBinding(),
-            home: const MyApp(),
+            home: const MyHomePage(title: 'home page'),
           ),
         );
       },
