@@ -6,32 +6,36 @@ import 'package:flutter/material.dart';
 class LightTheme {
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Colors.transparent,
     // const Color.fromARGB(
     //     246, 255, 254, 254), //ThemeHelpers.deepColor.withAlpha(50), //ThemeHelpers.deepColor[50],
     splashColor: Colors.white,
     appBarTheme: AppBarTheme(
-      titleTextStyle: ThemeHelpers.titleTextStyle(Colors.white),
+      titleTextStyle: ThemeHelpers.titleTextStyle(Colors.black),
       elevation: 0,
-      toolbarTextStyle: const TextStyle(color: Colors.white),
-      foregroundColor: Colors.white,
-      backgroundColor: ColorsConstant
-          .appbarColor, //ThemeHelpers.deepColor.withAlpha(100), //.shade700,
-      iconTheme: ThemeHelpers.iconThemeData(),
-      actionsIconTheme: ThemeHelpers.iconThemeData(),
+      toolbarTextStyle: const TextStyle(color: Colors.black),
+      foregroundColor: Colors.black,
+      backgroundColor: Colors
+          .transparent, //ThemeHelpers.deepColor.withAlpha(100), //.shade700,
+      iconTheme: ThemeHelpers.iconThemeData(
+        color: ThemeHelpers.primaryColor,
+      ),
+      actionsIconTheme: ThemeHelpers.iconThemeData(
+        color: ThemeHelpers.primaryColor,
+      ),
       systemOverlayStyle:
-          ThemeHelpers.systemUiOverlayStyle(ColorsConstant.appbarColor, true),
+          ThemeHelpers.systemUiOverlayStyle(Colors.transparent, false),
       centerTitle: true,
       scrolledUnderElevation: 0.20,
     ),
     bottomNavigationBarTheme: ThemeHelpers.bottomNavigationBarThemeData(
-      backColor: ColorsConstant.green1.withAlpha(100),
+      backColor: ColorsConstant.primaryColor.withAlpha(100),
       selectIcon: ThemeHelpers.iconThemeData(color: ThemeHelpers.primaryColor),
       unselectIcon: ThemeHelpers.iconThemeData(
           color: ThemeHelpers.primaryColor, opacity: 0.5),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: ColorsConstant.green1,
+      backgroundColor: ColorsConstant.primaryColor,
       foregroundColor: ThemeHelpers.dARKTHEMETEXTCOLOR,
       elevation: 3.0,
     ),
@@ -40,12 +44,11 @@ class LightTheme {
       primary: ThemeHelpers.primaryColor,
       brightness: Brightness.light,
     ),
-    fontFamily: FontFamily.myraidPro,
+    fontFamily: FontFamily.switzerComplete,
     useMaterial3: true,
-    iconTheme:
-        ThemeHelpers.iconThemeData(color: ThemeHelpers.primaryColorLighter),
+    iconTheme: ThemeHelpers.iconThemeData(color: ThemeHelpers.primaryColor),
     // primarySwatch: Colors.amber, //ThemeHelpers.primaryColor, //Colors.amber,
-    focusColor: ColorsConstant.green1,
+    focusColor: ColorsConstant.primaryColor,
     elevatedButtonTheme:
         ThemeHelpers.elevatedButtonThemeData(ThemeHelpers.primaryColor),
     outlinedButtonTheme:
@@ -56,7 +59,7 @@ class LightTheme {
     primaryIconTheme:
         ThemeHelpers.iconThemeData(color: ThemeHelpers.primaryColor),
     textSelectionTheme: ThemeHelpers.textSelectionThemeData(
-      ThemeHelpers.primaryColorLighter,
+      ThemeHelpers.primaryColor,
       ThemeHelpers.primaryColorLighter,
     ),
     textTheme: TextTheme(

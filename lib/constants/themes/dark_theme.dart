@@ -36,7 +36,7 @@ class DarkTheme {
       primary: ThemeHelpers.primaryColorLighter,
       brightness: Brightness.dark,
     ),
-    fontFamily: FontFamily.myraidPro,
+    fontFamily: FontFamily.switzerComplete,
     useMaterial3: true,
     iconTheme:
         ThemeHelpers.iconThemeData(color: ThemeHelpers.primaryColorLighter),

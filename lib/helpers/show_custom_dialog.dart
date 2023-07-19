@@ -104,7 +104,7 @@ class ShowCustomDialog {
                   text: 'يرجى التواصل معنا عير الإيميل:\n',
                   style: FontSizes.h5?.copyWith(
                     color: theme.textTheme.bodyLarge?.color,
-                    fontFamily: FontFamily.myraidPro,
+                    fontFamily: FontFamily.switzerComplete,
                   ),
                   children: [
                     TextSpan(
@@ -187,7 +187,7 @@ class ShowCustomDialog {
       void Function()? onTab,
     }) {
       return Material(
-        // color: ColorsConstant.tableBlack,
+        color: Colors.transparent,
         child: SizedBox(
           width: double.infinity,
           child: InkWell(
@@ -215,13 +215,14 @@ class ShowCustomDialog {
                 const HorizantalSizedBox(10),
                 Text(
                   title,
-                  style: FontSizes.h6?.copyWith(
+                  style: FontSizes.h7?.copyWith(
                     fontSize: isHeader
                         ? null
                         : showIcons
                             ? FontSizes.h7?.fontSize
                             : FontSizes.h8?.fontSize,
                     fontWeight: isHeader ? FontWeight.bold : FontWeight.w400,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -242,7 +243,7 @@ class ShowCustomDialog {
                 padding: CustomEdgeInsets.symmetric(10, 4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
-                  color: ColorsConstant.white,
+                  color: ColorsConstant.tableBlack,
                 ),
                 child: Padding(
                   padding: CustomEdgeInsets.symmetric(5, 15),
@@ -272,6 +273,7 @@ class ShowCustomDialog {
                             result: imagePath == null ? [] : [imagePath],
                           );
                         },
+                        isHeader: true,
                       ),
                       const VerticalSizedBox(10),
                       buildBody(
@@ -288,6 +290,7 @@ class ShowCustomDialog {
                             result: videoPath == null ? [] : [videoPath],
                           );
                         },
+                        isHeader: true,
                       ),
                       const VerticalSizedBox(10),
                       buildBody(
@@ -300,6 +303,7 @@ class ShowCustomDialog {
                           );
                           Get.back(result: filesPaths);
                         },
+                        isHeader: true,
                       ),
                       const VerticalSizedBox(10),
                       buildBody(
@@ -313,6 +317,7 @@ class ShowCustomDialog {
 
                           Get.back(result: filesPaths);
                         },
+                        isHeader: true,
                       ),
                       const VerticalSizedBox(13),
                       Align(
@@ -330,7 +335,9 @@ class ShowCustomDialog {
                                 : ColorsConstant.green2,
                             elevation: showIcons ? null : 0,
                             padding: CustomEdgeInsets.symmetric(0, 10),
-                            textStyle: FontSizes.h8,
+                            textStyle: FontSizes.h8?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                             shape: ContinuousRectangleBorder(
                               borderRadius: BorderRadius.circular(8.r),
                             ),
@@ -460,7 +467,7 @@ class ShowCustomDialog {
                   Get.back(result: true);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsConstant.green1,
+                  backgroundColor: ColorsConstant.blue,
                   foregroundColor: Colors.white,
                   padding: CustomEdgeInsets.all(5),
                   textStyle: FontSizes.h8?.copyWith(
@@ -496,7 +503,7 @@ class ShowCustomDialog {
                   Get.back(result: true);
                 },
                 style: TextButton.styleFrom(
-                  foregroundColor: ColorsConstant.green1,
+                  foregroundColor: ColorsConstant.blue,
                   textStyle: FontSizes.h8?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

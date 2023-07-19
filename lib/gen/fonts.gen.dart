@@ -10,6 +10,9 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: Myraid-Pro
-  static const String myraidPro = 'Myraid-Pro';
+  /// Font family: Bebas-Neue
+  static const String bebasNeue = 'Bebas-Neue';
+
+  /// Font family: Switzer-Complete
+  static const String switzerComplete = 'Switzer-Complete';
 }

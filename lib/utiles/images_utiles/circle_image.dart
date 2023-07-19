@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:medicalty/controllers/screen_controllers/theme_controller.dart';
+import 'package:medicalty/helpers/image_string_helpers.dart';
 import 'package:medicalty/utiles/images_utiles/image_helpers.dart';
 
 class CircleSqureImage extends StatelessWidget {
@@ -66,6 +67,8 @@ class CircleSqureImage extends StatelessWidget {
     }
     return GetBuilder<ThemeController>(
       builder: (prov) {
+        final isSvg =
+            '.svg' == ImageStringHelpers.getFileExtension(pic).toLowerCase();
         final dark = prov.isDarkMode;
         return CircleAvatar(
           radius: radius.r,
@@ -81,11 +84,13 @@ class CircleSqureImage extends StatelessWidget {
                         height,
                         id,
                       )
-                    : ImageHelpers.getFileImage(
-                        pic,
-                        width,
-                        height,
-                      )
+                    : isSvg
+                        ? ImageHelpers.getSVGAssetImage(width, height, pic: pic)
+                        : ImageHelpers.getFileImage(
+                            pic,
+                            width,
+                            height,
+                          )
                 : ImageHelpers.getAssetImage(
                     width,
                     height,
