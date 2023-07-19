@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:medicalty/constants/themes/colors_constant.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
 import 'package:medicalty/utiles/buttons_utiles/custom_text_button.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
-import 'package:medicalty/views/auth/screens/create_account_screen.dart';
 import 'package:medicalty/views/welcom/widgets/onboarding1.dart';
 import 'package:medicalty/views/welcom/widgets/onboarding2.dart';
 import 'package:medicalty/views/welcom/widgets/onboarding3.dart';
@@ -75,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     CustomTextButton(
                       allowOnlineOnly: false,
                       allowRegisterOnly: false,
-                      title: (isLastPage) ? 'Done' : 'Skip',
+                      title: 'Skip',
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.black,
                         backgroundColor: Colors.transparent,
@@ -85,16 +83,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                       onPressed: () {
-                        if (isLastPage) {
-                          Get.offUntil(
-                            GetPageRoute(
-                              page: () => const CreateAccountScreen(),
-                            ),
-                            (route) => false,
-                          );
-                        } else {
-                          controller.jumpToPage(pageChildren.length - 1);
-                        }
+                        controller.jumpToPage(
+                          (pageChildren.length - 1),
+                          // duration: const Duration(milliseconds: 500),
+                          // curve: Curves.bounceIn,
+                        );
                       },
                     ),
                     SmoothPageIndicator(
@@ -130,7 +123,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onPressed: () {
                         controller.animateToPage(
                           (controller.page! + 1).floor(),
-                          duration: const Duration(milliseconds: 400),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn,
                         );
                       },
