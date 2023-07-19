@@ -2,7 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:medicalty/constants/themes/colors_constant.dart';
+import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/helpers/show_custom_dialog.dart';
+import 'package:medicalty/utiles/buttons_utiles/custom_icon_button.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
 import 'package:medicalty/utiles/images_utiles/image_helpers.dart';
 
@@ -72,7 +76,7 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
   }
 
   Widget _buildImage(String image) {
-    return image.contains('https://') //|| image.contains('https')
+    return image.isURL //contains('https://') //|| image.contains('https')
         ? ImageHelpers.getNetworkImage(
             image,
             widget.width,
@@ -90,12 +94,16 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
 
   Widget _buildTabToChooseImage() {
     return Center(
-      child: Padding(
-        padding: CustomEdgeInsets.all(4.0),
-        child: widget.enableTabToChoose
-            ? const Text('إضغط لإختيار صورة')
-            : const Text('لا يوجد صورة'),
-      ),
+      child: widget.enableTabToChoose
+          ? ImageHelpers.getSVGAssetImage(
+              widget.width,
+              widget.height,
+              pic: Assets.svgs.profileEditImg,
+            )
+          : Padding(
+              padding: CustomEdgeInsets.all(4.0),
+              child: const Text('لا يوجد صورة'),
+            ),
     );
   }
 
@@ -148,28 +156,40 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
             width: widget.width.w,
             child: _buildInkWell(),
           ),
-        Positioned(
-          top: 5,
-          right: 5,
-          child: Material(
-            color: Colors.transparent,
-            child: IconButton(
-              onPressed: () {
-                if (image != null) {
-                  setState(() {
-                    image = null;
-                    if (widget.enableTabToChoose) {
-                      widget.imageHandeler!(widget.index!, null);
+        if (image?.path.isNotEmpty ?? false)
+          Positioned(
+            top: 15.h,
+            right: 15.w,
+            child: SizedBox(
+              width: 26.w,
+              height: 26.h,
+              child: Center(
+                child: CustomIconButton(
+                  onPressed: () {
+                    if (image != null) {
+                      setState(() {
+                        image = null;
+                        if (widget.enableTabToChoose) {
+                          widget.imageHandeler!(widget.index!, null);
+                        }
+                      });
                     }
-                  });
-                }
-              },
-              tooltip: 'حذف الصورة',
-              hoverColor: theme.iconTheme.color,
-              icon: const Icon(Icons.delete_outline),
+                  },
+                  tooltip: '',
+                  style: IconButton.styleFrom(
+                    backgroundColor: ColorsConstant.red,
+                    foregroundColor: Colors.white,
+                    // alignment: Alignment.center,
+                    padding: const EdgeInsets.all(0),
+                  ),
+                  iconData: Icons.clear,
+                  iconSize: 20,
+                  allowOnlineOnly: false,
+                  allowRegisterOnly: false,
+                ),
+              ),
             ),
           ),
-        ),
       ],
     );
   }

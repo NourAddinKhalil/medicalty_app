@@ -15,11 +15,13 @@ class CustomForm extends StatelessWidget {
     this.childrenAfterSaveButton,
     this.paddingHorizantal = 14,
     this.paddingVertical = 6,
+    this.saveStyle,
   });
   final _formState = GlobalKey<FormState>();
   final List<Widget> children;
   final Future<void> Function() save;
   final String saveButtonText;
+  final ButtonStyle? saveStyle;
   final List<Widget>? childrenAfterSaveButton;
   final double paddingVertical;
   final double paddingHorizantal;
@@ -54,7 +56,7 @@ class CustomForm extends StatelessWidget {
                   child: HorizantalSizedBox(double.infinity),
                 ),
                 SizedBox(
-                  width: 290.w,
+                  width: 330.w,
                   child: CustomElevatedButton(
                     // padding: 10,
                     title: saveButtonText,
@@ -62,6 +64,12 @@ class CustomForm extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
                     ),
+                    style: saveStyle ??
+                        ElevatedButton.styleFrom(
+                          shape: ContinuousRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.r),
+                          ),
+                        ),
                     onPressed: _save,
                     allowOnlineOnly: false,
                     allowRegisterOnly: false,

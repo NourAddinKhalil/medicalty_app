@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class ColorsConstant {
+  static const primaryColor = Color(0xFF022939);
+  static const facebookColor = Color(0xFF4267B2);
   static const splashColor = Color(0xFF2B3647);
   static const appbarColor = Color(0xFF012939);
   static const green1 = Color(0xFF7DB00E);
@@ -14,7 +16,7 @@ class ColorsConstant {
   static const purple = Color(0xFF585595);
   static const purpleLight = Color(0xff885AF8);
   static const black = Color(0xFF000000);
-  static const containerColor =  Color.fromARGB(50, 124, 176, 65);
+  static const containerColor = Color.fromARGB(50, 124, 176, 65);
 
   static const accentBlue = Color(0xff109CF1);
   static const yellow = Color(0xffFFB946);
@@ -28,7 +30,7 @@ class ColorsConstant {
   static const blue2 = Color(0xff149FF3);
   static const homeAppBar = Color(0xff333344);
   static const transpartenGreen = Color(0xFF7BB042);
-  static const planCntainer = Color(0x6E7CB041);
+  static const planCntainer = Color(0xFF012939);
   static const red2 = Color(0xFFB72424);
   static const snackbarNoramlBackground = Color(0xFF303030);
   static const pending = Color(0xFFFBBC05);

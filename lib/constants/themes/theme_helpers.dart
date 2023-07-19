@@ -9,8 +9,8 @@ class ThemeHelpers {
   // static TextTheme? textThemes;
   static const dARKTHEMETEXTCOLOR = Colors.white;
   // static const _lIGHTTHEMETEXTCOLOR = Colors.black;
-  static const primaryColor = ColorsConstant.green1; //Colors.amber;
-  static const primaryColorLighter = ColorsConstant.green2; //Colors.amber;
+  static const primaryColor = ColorsConstant.primaryColor; //Colors.amber;
+  static const primaryColorLighter = Color(0xFF707A89); //Colors.amber;
   // static const _deepColor = Color(0xFF011C26); //Colors.deepOrange;
 
   static SystemUiOverlayStyle systemUiOverlayStyle(
@@ -58,7 +58,7 @@ class ThemeHelpers {
       fontSize: 18.sp,
       color: textColor,
       fontWeight: FontWeight.w600,
-      fontFamily: FontFamily.myraidPro,
+      fontFamily: FontFamily.switzerComplete,
     );
   }
 
@@ -148,7 +148,7 @@ class ThemeHelpers {
     return TextStyle(
       // color: _dARKTHEMETEXTCOLOR,
       fontSize: fontSize.sp,
-      fontFamily: FontFamily.myraidPro,
+      fontFamily: FontFamily.switzerComplete,
       // fontWeight: FontWeight.bold,
     );
   }

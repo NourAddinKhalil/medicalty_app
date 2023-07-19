@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
 import 'package:medicalty/utiles/buttons_utiles/custom_icon_button.dart';
+import 'package:medicalty/utiles/custom_sized_box.dart';
 import 'package:medicalty/utiles/title_upon_widget.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -34,12 +35,9 @@ class CustomTextFormField extends StatefulWidget {
   final AutovalidateMode autovalidateMode;
   final void Function()? onTap;
   final bool canDeleteText;
-  final void Function()? onIconPressed;
   final double iconSize;
-  final double? textSize;
-  final bool showIconButton;
   final IconData? icon;
-  final String? iconToolTip;
+  final double? textSize;
   final bool showClearIcon;
   final bool showSuffix;
   final bool obscureText;
@@ -85,20 +83,17 @@ class CustomTextFormField extends StatefulWidget {
     required this.validator,
     required this.onSaved,
     this.onChange,
-    this.showIconButton = false,
     this.showSuffix = true,
     this.icon,
-    this.onIconPressed,
     this.iconSize = 25.0,
     this.textSize,
     this.onTap,
     this.canDeleteText = true,
-    this.iconToolTip,
     this.showClearIcon = true,
     this.obscureText = false,
     this.showObscureText = true,
-    this.fillColor,
-    this.borderColor = Colors.grey,
+    this.fillColor = const Color(0xFFF5F5F5),
+    this.borderColor = const Color(0xFF696969),
     this.border,
     this.focusedBorder,
     this.enabledBorder,
@@ -221,13 +216,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             fontWeight: FontWeight.w400,
             color: Colors.black45,
           ),
-          // prefixIcon: Icon(
-          //   widget.leadingIcon,
-          //   size: 30.0.sp,
-          //   color: isError
-          //       ? themeColor.colorScheme.error
-          //       : themeColor.iconTheme.color,
-          // ),
           prefixIcon: widget.leading,
           prefixIconColor: isError
               ? themeColor.colorScheme.error
@@ -243,8 +231,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     )
                   : widget.showOutlinedStyle
                       ? OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
+                          borderSide: BorderSide(
+                            color: widget.borderColor,
                           ),
                           borderRadius: BorderRadius.circular(10),
                         )
@@ -375,17 +363,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                             }
                           },
                         ),
-                    if (widget.showIconButton)
-                      CustomIconButton(
-                        iconData: widget.icon,
-                        tooltip: widget.iconToolTip,
-                        iconSize: widget.iconSize,
-                        onPressed: widget.onIconPressed,
-                        iconColor: Colors.black45,
-                        allowOnlineOnly: false,
-                        allowRegisterOnly: false,
-                        makeTheme: true,
-                        isError: isError,
+                    if (widget.icon != null)
+                      Padding(
+                        padding: CustomEdgeInsets.only(right: 8.0),
+                        child: Icon(
+                          widget.icon,
+                          size: widget.iconSize.sp,
+                          color: !isError
+                              ? themeColor.iconTheme.color
+                              : themeColor.colorScheme.error,
+                        ),
                       ),
                     if (widget.obscureText && widget.showObscureText)
                       CustomIconButton(
@@ -394,7 +381,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                             : FontAwesomeIcons.solidEye,
                         tooltip: _obscureText ? 'Show' : 'Hide',
                         iconSize: 20.0,
-                        iconColor: Colors.black45,
+                        // iconColor: Colors.black45,
                         allowOnlineOnly: false,
                         allowRegisterOnly: false,
                         makeTheme: true,
@@ -405,15 +392,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                           });
                         },
                       ),
+                    const HorizantalSizedBox(2),
                   ],
                 ),
         ),
         style: widget.innerTextStyle ??
-            FontSizes.h7?.copyWith(
+            FontSizes.h8?.copyWith(
               fontSize: widget.imprtantBorder ? FontSizes.h6?.fontSize : null,
               fontWeight:
                   widget.imprtantBorder ? FontWeight.bold : FontWeight.w400,
-              color: Colors.black45, //themeColor.colorScheme.onSurface,
+              color:
+                  const Color(0xFFC4C4C4), //themeColor.colorScheme.onSurface,
             ),
         // TextStyle(
         //   color: themeColor.colorScheme.onSurface,

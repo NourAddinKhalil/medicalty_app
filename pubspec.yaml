@@ -77,58 +77,62 @@ flutter:
     # - family: Franklin-Gothic
     #   fonts:
     #     - asset: assets/fonts/Franklin_Gothic_Medium_Cond_Regular.ttf
-    - family: Myraid-Pro
-      fonts:
-        - asset: assets/fonts/myriad_pro/MYRIADPRO-BOLD.OTF.ttf
-          weight: 700
-        - asset: assets/fonts/myriad_pro/MYRIADPRO-SEMIBOLDIT.OTF.ttf
-          weight: 600
-        - asset: assets/fonts/myriad_pro/MYRIADPRO-REGULAR.OTF.ttf
-          weight: 400
-        - asset: assets/fonts/myriad_pro/MyriadPro-Light.otf.ttf
-          weight: 300
+    # - family: Myraid-Pro
+    #   fonts:
+    #     - asset: assets/fonts/myriad_pro/MYRIADPRO-BOLD.OTF.ttf
+    #       weight: 700
+    #     - asset: assets/fonts/myriad_pro/MYRIADPRO-SEMIBOLDIT.OTF.ttf
+    #       weight: 600
+    #     - asset: assets/fonts/myriad_pro/MYRIADPRO-REGULAR.OTF.ttf
+    #       weight: 400
+    #     - asset: assets/fonts/myriad_pro/MyriadPro-Light.otf.ttf
+    #       weight: 300
   
-  # - family: Switzer-Complete
-  #   fonts:
-  #     - asset: assets/fonts/switzer/Switzer-Black.ttf
-  #       weight: 900
-  #     - asset: assets/fonts/switzer/Switzer-BlackItalic.ttf
-  #       weight: 900
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Extrabold.ttf
-  #       weight: 800
-  #     - asset: assets/fonts/switzer/Switzer-ExtraboldItalic.ttf
-  #       weight: 800
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Bold.ttf
-  #       weight: 700
-  #     - asset: assets/fonts/switzer/Switzer-BoldItalic.ttf
-  #       weight: 700
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Semibold.ttf
-  #       weight: 600
-  #     - asset: assets/fonts/switzer/Switzer-SemiboldItalic.ttf
-  #       weight: 600
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Medium.ttf
-  #       weight: 500
-  #     - asset: assets/fonts/switzer/Switzer-MediumItalic.ttf
-  #       weight: 500
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Regular.ttf
-  #       weight: 400
-  #     - asset: assets/fonts/switzer/Switzer-Light.ttf
-  #       weight: 300
-  #     - asset: assets/fonts/switzer/Switzer-LightItalic.ttf
-  #       weight: 300
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Extralight.ttf
-  #       weight: 200
-  #     - asset: assets/fonts/switzer/Switzer-ExtralightItalic.ttf
-  #       weight: 200
-  #       style: italic
-  #     - asset: assets/fonts/switzer/Switzer-Thin.ttf
-  #       weight: 100
-  #     - asset: assets/fonts/switzer/Switzer-ThinItalic.ttf
-  #       weight: 100
-  #       style: italic
+  - family: Bebas-Neue
+    fonts:
+      - asset: assets/fonts/bebas_neue/BebasNeue-Regular.ttf
+
+  - family: Switzer-Complete
+    fonts:
+      - asset: assets/fonts/switzer/Switzer-Black.ttf
+        weight: 900
+      - asset: assets/fonts/switzer/Switzer-BlackItalic.ttf
+        weight: 900
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Extrabold.ttf
+        weight: 800
+      - asset: assets/fonts/switzer/Switzer-ExtraboldItalic.ttf
+        weight: 800
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/switzer/Switzer-BoldItalic.ttf
+        weight: 700
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Semibold.ttf
+        weight: 600
+      - asset: assets/fonts/switzer/Switzer-SemiboldItalic.ttf
+        weight: 600
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/switzer/Switzer-MediumItalic.ttf
+        weight: 500
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Regular.ttf
+        weight: 400
+      - asset: assets/fonts/switzer/Switzer-Light.ttf
+        weight: 300
+      - asset: assets/fonts/switzer/Switzer-LightItalic.ttf
+        weight: 300
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Extralight.ttf
+        weight: 200
+      - asset: assets/fonts/switzer/Switzer-ExtralightItalic.ttf
+        weight: 200
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Thin.ttf
+        weight: 100
+      - asset: assets/fonts/switzer/Switzer-ThinItalic.ttf
+        weight: 100
+        style: italic

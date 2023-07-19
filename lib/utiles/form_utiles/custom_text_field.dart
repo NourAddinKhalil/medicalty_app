@@ -17,6 +17,8 @@ class CustomTextField<DataType> extends StatefulWidget {
   const CustomTextField({
     Key? key,
     required this.title,
+    this.hintText,
+    this.innerTextStyle,
     this.saveHandeler,
     this.autoValidate = false,
     this.validator,
@@ -28,7 +30,7 @@ class CustomTextField<DataType> extends StatefulWidget {
     required this.suggestionCallback,
     required this.fieldList,
     this.changeParentUi,
-    this.fillColor,
+    this.fillColor = const Color(0xFFF5F5F5),
     this.border,
     this.focusedBorder,
     this.enabledBorder,
@@ -41,6 +43,7 @@ class CustomTextField<DataType> extends StatefulWidget {
     this.showlableOutside = false,
     this.readOnly = false,
     this.showIcon = true,
+    this.showClearIcon = true,
     this.autofocus = false,
     this.icon = Icons.arrow_forward_ios_outlined,
     this.rotateDegree = 89.5,
@@ -54,6 +57,7 @@ class CustomTextField<DataType> extends StatefulWidget {
   }) : super(key: key);
 
   final String title;
+  final String? hintText;
   final String typeName;
   final void Function(String? val)? saveHandeler;
   final bool autoValidate;
@@ -76,6 +80,7 @@ class CustomTextField<DataType> extends StatefulWidget {
   final bool showHint;
   final bool showlableOutside;
   final bool readOnly;
+  final bool showClearIcon;
   final bool autofocus;
   final void Function(int index)? changeParentUi;
   final Widget? suffix;
@@ -86,6 +91,7 @@ class CustomTextField<DataType> extends StatefulWidget {
   final Widget Function(BuildContext context, DataType suggestion)? itemBuilder;
   final double? width;
   final double? height;
+  final TextStyle? innerTextStyle;
   final double horizantalPadding;
   final double verticalPadding;
 
@@ -259,7 +265,8 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
               fontWeight: widget.suffix != null ? FontWeight.bold : null,
               color: isError ? themeColor.colorScheme.error : null,
             ),
-            hintText: widget.showHint ? 'Choose ${widget.typeName}' : null,
+            hintText: widget.hintText ??
+                (widget.showHint ? 'Choose ${widget.typeName}' : null),
             label: widget.title == '' ||
                     widget.title.isEmpty ||
                     !widget.showlable ||
@@ -277,7 +284,7 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (!widget.readOnly)
+                if (!widget.readOnly && widget.showClearIcon)
                   if (_clearBtnFocus)
                     CustomIconButton(
                       iconData: Icons.clear_outlined,
@@ -303,13 +310,19 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
                       size: 25.0,
                       color: isError
                           ? themeColor.colorScheme.error
-                          : Colors.black45, //themeColor.iconTheme.color,
+                          : themeColor.primaryColor,
                     ),
                   ),
                 const HorizantalSizedBox(15),
               ],
             ),
           ),
+          style: widget.innerTextStyle ??
+              FontSizes.h8?.copyWith(
+                fontWeight: FontWeight.w500,
+                color:
+                    const Color(0xFFC4C4C4), //themeColor.colorScheme.onSurface,
+              ),
           textInputAction:
               widget.isTheLast ? TextInputAction.done : TextInputAction.next,
         ),

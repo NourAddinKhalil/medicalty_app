@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medicalty/constants/themes/colors_constant.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
@@ -9,7 +10,7 @@ class SelectItemButton extends StatelessWidget {
   const SelectItemButton({
     super.key,
     required this.title,
-    this.icon = Icons.add_outlined,
+    this.icon = FontAwesomeIcons.plus,
     this.subTitle,
     this.subTitleWidget,
     this.isSelected = false,
@@ -17,7 +18,7 @@ class SelectItemButton extends StatelessWidget {
     this.onClearPressed,
     this.backgroundColor = ColorsConstant.appbarColor,
     this.titleColor = Colors.white,
-    this.iconColor = ColorsConstant.green2,
+    this.iconColor = ColorsConstant.primaryColor,
     this.iconOnEnd = false,
     this.showIcon = true,
     this.titleStyle,
