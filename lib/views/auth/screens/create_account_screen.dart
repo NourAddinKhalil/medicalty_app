@@ -201,7 +201,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 title: 'Your Specialty',
                 showHint: true,
                 showlable: false,
-                textController: specialtyTxtField,
+                controller: specialtyTxtField,
                 typeName: 'specialty',
                 suggestionCallback: (val) {
                   return [];

@@ -1,19 +1,10 @@
-import 'package:get/get.dart';
-import 'package:medicalty/controllers/api_controllers/connection_controller.dart';
 import 'package:medicalty/helpers/custom_exception.dart';
 import 'package:medicalty/helpers/custom_overlay_loading.dart';
 import 'package:medicalty/helpers/show_messages.dart';
 import 'package:medicalty/repositories/request_structure.dart';
+import 'package:medicalty/controllers/helpers_controller.dart';
 
-class MasterController extends GetxController implements IRequestStructure {
-  var _isLoading = false;
-
-  bool get isLoading => _isLoading;
-
-  bool get isOnline => Get.find<ConnectionController>().isOnline;
-
-  // bool get isAuth => Get.find<AuthController>().authenticated;
-
+class MasterController extends HelpersController with IRequestStructure {
   Future<void> save<Model>(Model model, {bool isUpdate = false}) async {
     //show loading spinner
     CustomOverlayLoading.showOverlayLoading();
@@ -60,11 +51,6 @@ class MasterController extends GetxController implements IRequestStructure {
     }
   }
 
-  set isLoading(bool loading) {
-    _isLoading = loading;
-    update();
-  }
-
   @override
   Future<void> delete(model) async {}
 
@@ -79,12 +65,6 @@ class MasterController extends GetxController implements IRequestStructure {
 
   @override
   Future<void> edit(model) async {}
-
-  @override
-  String get apiEndPoint => throw UnimplementedError();
-
-  @override
-  String get apiSearchEndpoint => throw UnimplementedError();
 
   @override
   Future search(query) async {}
