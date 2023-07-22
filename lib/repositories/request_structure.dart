@@ -1,4 +1,4 @@
-abstract class IRequestStructure {
+abstract mixin class IRequestStructure {
   String get apiEndPoint => '';
 
   String get apiSearchEndpoint => '$apiEndPoint/search';

@@ -23,7 +23,7 @@ class CustomTextField<DataType> extends StatefulWidget {
     this.autoValidate = false,
     this.validator,
     this.allowNullValue = false,
-    required this.textController,
+    required this.controller,
     this.otherControlersValues,
     this.isTheLast = false,
     this.typeName = 'type',
@@ -62,7 +62,7 @@ class CustomTextField<DataType> extends StatefulWidget {
   final void Function(String? val)? saveHandeler;
   final bool autoValidate;
   final bool allowNullValue;
-  final TextEditingController textController;
+  final TextEditingController controller;
   final List<TextEditingController>? otherControlersValues;
   final bool isTheLast;
   final FutureOr<Iterable<DataType>> Function(String val) suggestionCallback;
@@ -125,8 +125,8 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
   }
 
   void moveCursorAtTheEnd() {
-    widget.textController.selection =
-        TextSelection.collapsed(offset: widget.textController.text.length);
+    widget.controller.selection =
+        TextSelection.collapsed(offset: widget.controller.text.length);
     if (!widget.readOnly) {
       setState(() {
         _clearBtnFocus = !_clearBtnFocus;
@@ -168,7 +168,7 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
         debounceDuration: const Duration(milliseconds: 500),
         textFieldConfiguration: TextFieldConfiguration(
           focusNode: _focusNode,
-          controller: widget.textController,
+          controller: widget.controller,
           onSubmitted: (_) {
             if (widget.isTheLast) {
               FocusManager.instance.primaryFocus?.unfocus();
@@ -296,7 +296,7 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
                       isError: isError,
                       onPressed: () {
                         if (!widget.readOnly) {
-                          widget.textController.text = '';
+                          widget.controller.text = '';
                           FocusManager.instance.primaryFocus?.unfocus();
                         }
                       },
@@ -330,7 +330,7 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
         // widget.isCar ? getCarSuggestions : getCitySuggestions,
         itemBuilder: widget.itemBuilder ??
             (_, dynamic suggestion) {
-              final isSelected = suggestion.name == widget.textController.text;
+              final isSelected = suggestion.name == widget.controller.text;
               return Container(
                 padding: CustomEdgeInsets.symmetric(7, 0),
                 decoration: BoxDecoration(
@@ -353,7 +353,7 @@ class CustomTextFieldState<DataType> extends State<CustomTextField<DataType>> {
         onSuggestionSelected: widget.onSuggestionSelected ??
             (dynamic suggestion) {
               final name = suggestion!.name;
-              widget.textController.text = name;
+              widget.controller.text = name;
               if (widget.changeParentUi != null) {
                 final index =
                     widget.fieldList?.indexWhere((element) => element == name);
