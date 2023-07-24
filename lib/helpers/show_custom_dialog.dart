@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/gen/fonts.gen.dart';
 import 'package:flutter/gestures.dart';
@@ -320,6 +321,7 @@ class ShowCustomDialog {
                             final filesPaths =
                                 await CustomFilePicker.showFilePicker(
                               allowMultiple: multiSelect,
+                              type: FileType.any,
                             );
 
                             Get.back(result: filesPaths);

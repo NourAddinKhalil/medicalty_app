@@ -120,11 +120,12 @@ class CustomFilePicker {
     bool allowMultiple = false,
     String dialogTitle = 'Pick a file',
     List<String>? allowedExtensions,
+    FileType type = FileType.custom,
   }) async {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: allowMultiple,
       dialogTitle: dialogTitle,
-      type: FileType.custom,
+      type: type,
       allowedExtensions: allowedExtensions,
     );
     if (result == null || result.paths.isEmpty) return [];
