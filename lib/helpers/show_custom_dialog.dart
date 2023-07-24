@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:medicalty/constants/themes/colors_constant.dart';
 import 'package:medicalty/helpers/custom_file_picker.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
+import 'package:medicalty/helpers/image_string_helpers.dart';
 import 'package:medicalty/helpers/utiles.dart';
 import 'package:medicalty/services/app_info.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
@@ -165,19 +166,15 @@ class ShowCustomDialog {
     );
   }
 
-  static Future<List<String>> showCustomDialogPicker(
-      // BuildContext context,
-      //   Future<String?>(
-      //     ImageSource imageSource, {
-      //     bool isCircle,
-      //     bool saveIntoDevice,
-      //   })
-      //       imageHandeler,
-      {
+  static Future<List<String>> showCustomDialogPicker({
     bool isCircle = false,
     bool saveToDevice = false,
     bool multiSelect = true,
     bool showIcons = true,
+    bool showChooseImage = true,
+    bool showChooseVideo = true,
+    bool showChooseDocument = true,
+    List<String>? allowedExtensions,
   }) async {
     Widget buildBody(
       String title,
@@ -259,66 +256,76 @@ class ShowCustomDialog {
                         isHeader: true,
                       ),
                       const VerticalSizedBox(10),
-                      buildBody(
-                        'Take a photo',
-                        Assets.icons.takePhoto,
-                        onTab: () async {
-                          final imagePath =
-                              await CustomFilePicker.showImagePicker(
-                            ImageSource.camera,
-                            isCircle: isCircle,
-                            saveIntoDevice: saveToDevice,
-                          );
-                          Get.back(
-                            result: imagePath == null ? [] : [imagePath],
-                          );
-                        },
-                        isHeader: true,
-                      ),
+                      if (showChooseImage)
+                        buildBody(
+                          'Take a photo',
+                          Assets.icons.takePhoto,
+                          onTab: () async {
+                            final imagePath =
+                                await CustomFilePicker.showImagePicker(
+                              ImageSource.camera,
+                              isCircle: isCircle,
+                              saveIntoDevice: saveToDevice,
+                            );
+                            Get.back(
+                              result: imagePath == null ? [] : [imagePath],
+                            );
+                          },
+                          isHeader: true,
+                        ),
                       const VerticalSizedBox(10),
-                      buildBody(
-                        'Take a video',
-                        Assets.icons.takeVideo,
-                        onTab: () async {
-                          final videoPath =
-                              await CustomFilePicker.showVideoPicker(
-                            ImageSource.camera,
-                            isCircle: isCircle,
-                            saveIntoDevice: saveToDevice,
-                          );
-                          Get.back(
-                            result: videoPath == null ? [] : [videoPath],
-                          );
-                        },
-                        isHeader: true,
-                      ),
+                      if (showChooseVideo)
+                        buildBody(
+                          'Take a video',
+                          Assets.icons.takeVideo,
+                          onTab: () async {
+                            final videoPath =
+                                await CustomFilePicker.showVideoPicker(
+                              ImageSource.camera,
+                              isCircle: isCircle,
+                              saveIntoDevice: saveToDevice,
+                            );
+                            Get.back(
+                              result: videoPath == null ? [] : [videoPath],
+                            );
+                          },
+                          isHeader: true,
+                        ),
                       const VerticalSizedBox(10),
-                      buildBody(
-                        'Choose photos & videos',
-                        Assets.icons.choosePhotoVideo,
-                        onTab: () async {
-                          final filesPaths =
-                              await CustomFilePicker.showFilePicker(
-                            allowMultiple: multiSelect,
-                          );
-                          Get.back(result: filesPaths);
-                        },
-                        isHeader: true,
-                      ),
-                      const VerticalSizedBox(10),
-                      buildBody(
-                        'Choose a documents',
-                        Assets.icons.chooseDocument,
-                        onTab: () async {
-                          final filesPaths =
-                              await CustomFilePicker.showFilePicker(
-                            allowMultiple: multiSelect,
-                          );
+                      if (showChooseImage || showChooseVideo)
+                        buildBody(
+                          'Choose photos & videos',
+                          Assets.icons.choosePhotoVideo,
+                          onTab: () async {
+                            final filesPaths =
+                                await CustomFilePicker.showFilePicker(
+                              allowMultiple: multiSelect,
+                              allowedExtensions: allowedExtensions ??
+                                  [
+                                    ...ImageStringHelpers.imagesExtensions,
+                                    ...ImageStringHelpers.videosExtensions,
+                                  ],
+                            );
 
-                          Get.back(result: filesPaths);
-                        },
-                        isHeader: true,
-                      ),
+                            Get.back(result: filesPaths);
+                          },
+                          isHeader: true,
+                        ),
+                      const VerticalSizedBox(10),
+                      if (showChooseDocument)
+                        buildBody(
+                          'Choose a documents',
+                          Assets.icons.chooseDocument,
+                          onTab: () async {
+                            final filesPaths =
+                                await CustomFilePicker.showFilePicker(
+                              allowMultiple: multiSelect,
+                            );
+
+                            Get.back(result: filesPaths);
+                          },
+                          isHeader: true,
+                        ),
                       const VerticalSizedBox(13),
                       Align(
                         alignment: showIcons
@@ -327,12 +334,14 @@ class ShowCustomDialog {
                         child: CustomElevatedButton(
                           title: 'Cancel'.toUpperCase(),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: showIcons
-                                ? ColorsConstant.green2
-                                : Colors.white,
-                            foregroundColor: showIcons
-                                ? Colors.white
-                                : ColorsConstant.green2,
+                            backgroundColor:
+                                // showIcons ?
+                                ColorsConstant.green2,
+                            // : Colors.white,
+                            foregroundColor:
+                                // showIcons ?
+                                Colors.white,
+                            //     :ColorsConstant.green2,
                             elevation: showIcons ? null : 0,
                             padding: CustomEdgeInsets.symmetric(0, 10),
                             textStyle: FontSizes.h8?.copyWith(

@@ -1,6 +1,8 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:medicalty/controllers/helpers_controller.dart';
+import 'package:medicalty/models/client_model.dart';
+import 'package:medicalty/models/expense_model.dart';
 
 class ExpenseScreenController extends HelpersController {
   final descriptionTxtField = TextEditingController();
@@ -17,8 +19,22 @@ class ExpenseScreenController extends HelpersController {
   final addressTxtField = TextEditingController();
   final customerAddressTxtField = TextEditingController();
   final accountingCodeTxtField = TextEditingController();
+  var model = ExpenseModel.defaultModel;
 
-  Future<void> save() async {}
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      image: _image,
+    );
+    update(['image']);
+  }
+
+  void onClientSelected(ClientModel selected) {
+    payForTxtField.text = '${selected.firstName} ${selected.lastName}';
+    model = model.copyWith(payFor: model.id);
+  }
 
   @override
   void dispose() {

@@ -17,6 +17,16 @@ class DiseaseScreenController extends HelpersController {
   final diseaseDescriptionTxtField = TextEditingController();
   var model = DiseaseModel.defaultModel;
 
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      image: _image,
+    );
+    update(['image']);
+  }
+
   @override
   void dispose() {
     unitPriceTxtField.dispose();

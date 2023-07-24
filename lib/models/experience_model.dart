@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
+
 import 'package:medicalty/helpers/convert_to_date_time.dart';
 import 'package:medicalty/services/api/multipart_request_helpers.dart';
 
 class ExperienceModel extends Equatable {
   final int id;
   final int doctorId;
+  final String name;
   final String placeName;
   final String placeCountry;
   final DateTime start;
@@ -16,6 +18,7 @@ class ExperienceModel extends Equatable {
 
   static ExperienceModel get defaultModel {
     return ExperienceModel(
+      name: '',
       doctorId: -1,
       placeName: '',
       placeCountry: '',
@@ -27,6 +30,7 @@ class ExperienceModel extends Equatable {
 
   const ExperienceModel({
     this.id = -1,
+    required this.name,
     required this.doctorId,
     required this.placeName,
     required this.placeCountry,
@@ -38,6 +42,7 @@ class ExperienceModel extends Equatable {
 
   ExperienceModel copyWith({
     int? id,
+    String? name,
     int? doctorId,
     String? placeName,
     String? placeCountry,
@@ -48,6 +53,7 @@ class ExperienceModel extends Equatable {
   }) {
     return ExperienceModel(
       id: id ?? this.id,
+      name: name ?? this.name,
       doctorId: doctorId ?? this.doctorId,
       placeName: placeName ?? this.placeName,
       placeCountry: placeCountry ?? this.placeCountry,
@@ -61,6 +67,7 @@ class ExperienceModel extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'name': name,
       'doctorId': doctorId,
       'placeName': placeName,
       'placeCountry': placeCountry,
@@ -76,6 +83,7 @@ class ExperienceModel extends Equatable {
   factory ExperienceModel.fromMap(Map<String, dynamic> map) {
     return ExperienceModel(
       id: map['id']?.toInt() ?? 0,
+      name: map['name'] ?? '',
       doctorId: map['doctorId']?.toInt() ?? 0,
       placeName: map['placeName'] ?? '',
       placeCountry: map['placeCountry'] ?? '',
@@ -92,14 +100,10 @@ class ExperienceModel extends Equatable {
       ExperienceModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'ExperienceModel(id: $id, doctorId: $doctorId, placeName: $placeName, placeCountry: $placeCountry, start: $start, end: $end, still: $still, image: $image)';
-  }
-
-  @override
   List<Object?> get props {
     return [
       id,
+      name,
       doctorId,
       placeName,
       placeCountry,
@@ -108,5 +112,10 @@ class ExperienceModel extends Equatable {
       still,
       image,
     ];
+  }
+
+  @override
+  String toString() {
+    return 'ExperienceModel(id: $id, doctorId: $doctorId, name: $name, placeName: $placeName, placeCountry: $placeCountry, start: $start, end: $end, still: $still, image: $image)';
   }
 }

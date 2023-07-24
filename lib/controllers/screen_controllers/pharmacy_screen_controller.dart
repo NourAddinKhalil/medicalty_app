@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalty/controllers/helpers_controller.dart';
+import 'package:medicalty/models/pharmacy_model.dart';
 
 class PharmacyScreenController extends HelpersController {
   final nameTxtField = TextEditingController();
@@ -20,6 +21,18 @@ class PharmacyScreenController extends HelpersController {
   final instgramTxtField = TextEditingController();
   final linkedinTxtField = TextEditingController();
   final youtubeTxtField = TextEditingController();
+
+  var model = PharmacyModel.defaultModel;
+
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      logo: _image,
+    );
+    update(['image']);
+  }
 
   @override
   void dispose() {

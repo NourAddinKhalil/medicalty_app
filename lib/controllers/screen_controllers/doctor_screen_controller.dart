@@ -1,6 +1,9 @@
 import 'package:currency_textfield/currency_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:medicalty/controllers/helpers_controller.dart';
+import 'package:medicalty/helpers/enums.dart';
+import 'package:medicalty/models/department_model.dart';
+import 'package:medicalty/models/doctor_model.dart';
 
 class DoctorScreenController extends HelpersController {
   final jobTxtField = TextEditingController();
@@ -29,7 +32,30 @@ class DoctorScreenController extends HelpersController {
     enableNegative: false,
     initDoubleValue: 0.00,
   );
-  Future<void> save() async {}
+
+  var model = DoctorModel.defaultModel;
+
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      image: _image,
+    );
+    update(['image']);
+  }
+
+  void onDepartmentSelected(DepartmentModel selected) {
+    departmentTxtField.text = selected.name;
+    model = model.copyWith(specialty: selected.id);
+    update(['department']);
+  }
+
+  void onGenderSelected(GenderEnum selected) {
+    genderTxtField.text = selected.name;
+    model = model.copyWith(gender: selected.name);
+    update(['gender']);
+  }
 
   @override
   void dispose() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalty/controllers/helpers_controller.dart';
+import 'package:medicalty/models/insurance_company_model.dart';
 
 class InsuranceCompanyScreenController extends HelpersController {
   final insuranceNameTxtField = TextEditingController();
@@ -20,6 +21,18 @@ class InsuranceCompanyScreenController extends HelpersController {
   final instgramTxtField = TextEditingController();
   final linkedinTxtField = TextEditingController();
   final youtubeTxtField = TextEditingController();
+
+  var model = InsuranceCompanyModel.defaultModel;
+
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      logo: _image,
+    );
+    update(['image']);
+  }
 
   @override
   void dispose() {

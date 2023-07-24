@@ -6,7 +6,7 @@ import 'package:medicalty/services/api/multipart_request_helpers.dart';
 class PharmacyProductModel extends Equatable {
   final int id;
   final String name;
-  final String decription;
+  final String description;
   final String inforamtion;
   final double price;
   final String? image;
@@ -15,7 +15,7 @@ class PharmacyProductModel extends Equatable {
   static PharmacyProductModel get defaultModel {
     return const PharmacyProductModel(
       name: '',
-      decription: '',
+      description: '',
       inforamtion: '',
       price: -1,
     );
@@ -24,7 +24,7 @@ class PharmacyProductModel extends Equatable {
   const PharmacyProductModel({
     this.id = -1,
     required this.name,
-    required this.decription,
+    required this.description,
     required this.inforamtion,
     required this.price,
     this.image,
@@ -34,7 +34,7 @@ class PharmacyProductModel extends Equatable {
   PharmacyProductModel copyWith({
     int? id,
     String? name,
-    String? decription,
+    String? description,
     String? inforamtion,
     double? price,
     String? image,
@@ -43,7 +43,7 @@ class PharmacyProductModel extends Equatable {
     return PharmacyProductModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      decription: decription ?? this.decription,
+      description: description ?? this.description,
       inforamtion: inforamtion ?? this.inforamtion,
       price: price ?? this.price,
       image: image ?? this.image,
@@ -55,7 +55,7 @@ class PharmacyProductModel extends Equatable {
     return {
       'id': id,
       'name': name,
-      'decription': decription,
+      'description': description,
       'inforamtion': inforamtion,
       'price': price,
       'image': image == null
@@ -71,7 +71,7 @@ class PharmacyProductModel extends Equatable {
     return PharmacyProductModel(
       id: map['id']?.toInt() ?? 0,
       name: map['name'] ?? '',
-      decription: map['decription'] ?? '',
+      description: map['description'] ?? '',
       inforamtion: map['inforamtion'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       image: map['image'],
@@ -86,7 +86,7 @@ class PharmacyProductModel extends Equatable {
 
   @override
   String toString() {
-    return 'PharmacyProductModel(id: $id, name: $name, decription: $decription, inforamtion: $inforamtion, price: $price, image: $image, pictures: $pictures)';
+    return 'PharmacyProductModel(id: $id, name: $name, decription: $description, inforamtion: $inforamtion, price: $price, image: $image, pictures: $pictures)';
   }
 
   @override
@@ -94,7 +94,7 @@ class PharmacyProductModel extends Equatable {
     return [
       id,
       name,
-      decription,
+      description,
       inforamtion,
       price,
       image,

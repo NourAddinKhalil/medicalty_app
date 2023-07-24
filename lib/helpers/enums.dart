@@ -15,12 +15,47 @@ enum EmailTypesEnum {
   other,
 }
 
+enum BloodTypesEnum {
+  aPlus,
+  aMinus,
+  bPlus,
+  bMinus,
+  oPlus,
+  oMinus,
+  abPlus,
+  abMinus,
+}
+
+enum YesNoEnum {
+  yes,
+  no,
+}
+
+enum PersonTypesEnum {
+  mr,
+  mrs,
+  eng,
+  doc,
+}
+
+enum GenderEnum {
+  male,
+  female,
+}
+
 // start emplpyee
 enum EmployeeStatusEnum {
   none,
   official,
   partTime,
   hourly,
+}
+
+enum WorkingTimesEnum {
+  anyTime,
+  morinig,
+  noon,
+  evening,
 }
 
 //end employee

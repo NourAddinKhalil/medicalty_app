@@ -28,7 +28,7 @@ class CenterModel extends Equatable {
   final String? password;
 
   static CenterModel get defaultModel {
-    return CenterModel(
+    return const CenterModel(
       name: '',
       username: '',
       phone: '',

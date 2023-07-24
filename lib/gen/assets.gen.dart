@@ -262,12 +262,21 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/profile_edit_img.svg
   String get profileEditImg => 'assets/svgs/profile_edit_img.svg';
 
+  /// File path: assets/svgs/profile_img.svg
+  String get profileImg => 'assets/svgs/profile_img.svg';
+
   /// File path: assets/svgs/server problem.svg
   String get serverProblem => 'assets/svgs/server problem.svg';
 
   /// List of all assets
-  List<String> get values =>
-      [disease, maintenance, noInternet, profileEditImg, serverProblem];
+  List<String> get values => [
+        disease,
+        maintenance,
+        noInternet,
+        profileEditImg,
+        profileImg,
+        serverProblem
+      ];
 }
 
 class Assets {

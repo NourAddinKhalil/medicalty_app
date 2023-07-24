@@ -21,6 +21,16 @@ class ClientScreenController extends HelpersController {
 
   var model = ClientModel.defaultModel;
 
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      image: _image,
+    );
+    update(['image']);
+  }
+
   @override
   void dispose() {
     firstNameTxtField.dispose();

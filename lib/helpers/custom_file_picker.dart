@@ -119,10 +119,13 @@ class CustomFilePicker {
   static Future<List<String>> showFilePicker({
     bool allowMultiple = false,
     String dialogTitle = 'Pick a file',
+    List<String>? allowedExtensions,
   }) async {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: allowMultiple,
       dialogTitle: dialogTitle,
+      type: FileType.custom,
+      allowedExtensions: allowedExtensions,
     );
     if (result == null || result.paths.isEmpty) return [];
 

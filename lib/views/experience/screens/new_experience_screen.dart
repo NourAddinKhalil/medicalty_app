@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicalty/constants/themes/colors_constant.dart';
 import 'package:medicalty/controllers/screen_controllers/experience_screen_controller.dart';
+import 'package:medicalty/helpers/convert_to_date_time.dart';
+import 'package:medicalty/helpers/enums.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
+import 'package:medicalty/helpers/image_string_helpers.dart';
 import 'package:medicalty/helpers/show_date_time_picker.dart';
 import 'package:medicalty/helpers/validators.dart';
 import 'package:medicalty/utiles/app_background.dart';
@@ -48,10 +51,11 @@ class NewExperienceScreen extends StatelessWidget {
                         enableTabToChoose: true,
                         height: 120,
                         width: 120,
-                        index: 0,
-                        imageHandeler: (index, image) {
-                          //
-                        },
+                        allowedExtensions: ImageStringHelpers.imagesExtensions,
+                        showChooseDocument: false,
+                        showChooseVideo: false,
+                        image: controller.image,
+                        onImageChoosen: controller.onImageChoosen,
                       ),
                     ),
                     const VerticalSizedBox(15),
@@ -73,7 +77,9 @@ class NewExperienceScreen extends StatelessWidget {
                       validator: Validators.checkIfNotEmpty,
                       icon: Icons.play_lesson_outlined,
                       onSaved: (value) {
-                        // _signupModel = _signupModel.copyWith(name: value);
+                        controller.model = controller.model.copyWith(
+                          name: value,
+                        );
                       },
                       showlable: false,
                       showHint: true,
@@ -88,7 +94,9 @@ class NewExperienceScreen extends StatelessWidget {
                       validator: Validators.checkIfNotEmpty,
                       icon: Icons.business,
                       onSaved: (value) {
-                        // _signupModel = _signupModel.copyWith(name: value);
+                        controller.model = controller.model.copyWith(
+                          placeName: value,
+                        );
                       },
                       showlable: false,
                       showHint: true,
@@ -103,7 +111,9 @@ class NewExperienceScreen extends StatelessWidget {
                       validator: Validators.checkIfNotEmpty,
                       icon: Icons.place_outlined,
                       onSaved: (value) {
-                        // _signupModel = _signupModel.copyWith(name: value);
+                        controller.model = controller.model.copyWith(
+                          placeCountry: value,
+                        );
                       },
                       showlable: false,
                       showHint: true,
@@ -124,7 +134,9 @@ class NewExperienceScreen extends StatelessWidget {
                                 controller.beginningWorkTxtField.text);
                       },
                       onSaved: (value) {
-                        // _signupModel = _signupModel.copyWith(name: value);
+                        controller.model = controller.model.copyWith(
+                          start: DateTimeHelpers.convertStringToDate(value!),
+                        );
                       },
                       showlable: false,
                       showHint: true,
@@ -145,13 +157,15 @@ class NewExperienceScreen extends StatelessWidget {
                                 controller.workIsFinishedTxtField.text);
                       },
                       onSaved: (value) {
-                        // _signupModel = _signupModel.copyWith(name: value);
+                        controller.model = controller.model.copyWith(
+                          end: DateTimeHelpers.convertStringToDate(value!),
+                        );
                       },
                       showlable: false,
                       showHint: true,
                     ),
                     const VerticalSizedBox(15),
-                    CustomTextField(
+                    CustomTextField<YesNoEnum>(
                       title: 'Is he on top of his work.',
                       hintText: 'Is he on top of his work.',
                       horizantalPadding: 20,
@@ -159,14 +173,14 @@ class NewExperienceScreen extends StatelessWidget {
                       showlable: false,
                       controller: controller.topOfWorkTxtField,
                       suggestionCallback: (val) {
-                        return [];
+                        return YesNoEnum.values;
                       },
-                      fieldList: const [],
-                      onSuggestionSelected: (selected) {},
+                      fieldList: YesNoEnum.values,
+                      onSuggestionSelected: controller.onYesNoSelected,
                       itemBuilder: (context, suggestion) {
                         return CustomSuggestionHelpers.itemPrimativTypesBuilder(
                           context,
-                          suggestion,
+                          suggestion.name,
                           controller.topOfWorkTxtField.text,
                         );
                       },

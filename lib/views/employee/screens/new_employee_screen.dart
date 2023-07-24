@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicalty/constants/themes/colors_constant.dart';
+import 'package:medicalty/controllers/api_controllers/department_controller.dart';
 import 'package:medicalty/controllers/screen_controllers/employee_screen_controller.dart';
+import 'package:medicalty/helpers/convert_to_date_time.dart';
+import 'package:medicalty/helpers/enums.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
+import 'package:medicalty/helpers/image_string_helpers.dart';
 import 'package:medicalty/helpers/show_date_time_picker.dart';
 import 'package:medicalty/helpers/validators.dart';
 import 'package:medicalty/utiles/app_background.dart';
@@ -19,6 +23,7 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
   const NewEmployeeScreen({super.key});
 
   Future<void> save() async {}
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -49,10 +54,12 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                           enableTabToChoose: true,
                           height: 120,
                           width: 120,
-                          index: 0,
-                          imageHandeler: (index, image) {
-                            //
-                          },
+                          allowedExtensions:
+                              ImageStringHelpers.imagesExtensions,
+                          showChooseDocument: false,
+                          showChooseVideo: false,
+                          image: controller.image,
+                          onImageChoosen: controller.onImageChoosen,
                         ),
                       ),
                       const VerticalSizedBox(15),
@@ -73,7 +80,9 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         textInputAction: TextInputAction.next,
                         validator: Validators.checkIfNotEmpty,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            name: value,
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -87,7 +96,9 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         textInputAction: TextInputAction.next,
                         validator: Validators.checkIfNotEmpty,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            username: value,
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -102,7 +113,9 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         validator: Validators.validateMoneyField,
                         icon: Icons.attach_money,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            salaryPerHour: double.parse(value!),
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -117,7 +130,9 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         validator: Validators.validateMoneyField,
                         icon: Icons.attach_money,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            totalSalary: double.parse(value!),
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -133,7 +148,10 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         validator: Validators.validateDateFormat,
                         icon: Icons.calendar_month_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            birthDate:
+                                DateTimeHelpers.convertStringToDate(value!),
+                          );
                         },
                         onTap: () async {
                           controller.birthDateTxtField.text =
@@ -144,24 +162,35 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         showHint: true,
                       ),
                       const VerticalSizedBox(15),
-                      CustomTextField(
-                        title: 'Belongs to',
-                        hintText: 'Belongs to',
-                        horizantalPadding: 20,
-                        showHint: true,
-                        showlable: false,
-                        controller: controller.belongsToTxtField,
-                        suggestionCallback: (val) {
-                          return [];
-                        },
-                        fieldList: const [],
-                        onSuggestionSelected: (selected) {},
-                        itemBuilder: (context, suggestion) {
-                          return CustomSuggestionHelpers
-                              .itemPrimativTypesBuilder(
-                            context,
-                            suggestion,
-                            controller.belongsToTxtField.text,
+                      GetBuilder<DepartmentController>(
+                        builder: (deptCtrl) {
+                          return CustomTextField(
+                            title: 'Belongs to',
+                            hintText: 'Belongs to',
+                            horizantalPadding: 20,
+                            showHint: true,
+                            showlable: false,
+                            controller: controller.belongsToTxtField,
+                            suggestionCallback: (query) async {
+                              final resList = await deptCtrl.get();
+                              final res = resList.where((element) {
+                                return element.name
+                                    .toLowerCase()
+                                    .contains(query.toLowerCase());
+                              }).toList();
+                              return res;
+                            },
+                            fieldList: null,
+                            onSuggestionSelected:
+                                controller.onDepartmentSelected,
+                            itemBuilder: (context, suggestion) {
+                              return CustomSuggestionHelpers
+                                  .itemPrimativTypesBuilder(
+                                context,
+                                suggestion.name,
+                                controller.belongsToTxtField.text,
+                              );
+                            },
                           );
                         },
                       ),
@@ -175,7 +204,7 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         },
                       ),
                       const VerticalSizedBox(15),
-                      CustomTextField(
+                      CustomTextField<WorkingTimesEnum>(
                         title: 'Working Time',
                         hintText: 'Working Time',
                         horizantalPadding: 20,
@@ -183,15 +212,15 @@ class NewEmployeeScreen extends GetView<EmployeeScreenController> {
                         showlable: false,
                         controller: controller.workingTimeTxtField,
                         suggestionCallback: (val) {
-                          return [];
+                          return WorkingTimesEnum.values;
                         },
-                        fieldList: const [],
-                        onSuggestionSelected: (selected) {},
+                        fieldList: WorkingTimesEnum.values,
+                        onSuggestionSelected: controller.onWorkingTimesSelected,
                         itemBuilder: (context, suggestion) {
                           return CustomSuggestionHelpers
                               .itemPrimativTypesBuilder(
                             context,
-                            suggestion,
+                            suggestion.name,
                             controller.workingTimeTxtField.text,
                           );
                         },

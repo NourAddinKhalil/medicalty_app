@@ -68,4 +68,7 @@ class MasterController extends HelpersController with IRequestStructure {
 
   @override
   Future search(query) async {}
+
+  @override
+  String get apiEndPoint => throw UnimplementedError();
 }

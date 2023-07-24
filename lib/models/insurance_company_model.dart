@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 class InsuranceCompanyModel extends Equatable {
   final int id;
   final String name;
+  final String decription;
   final String username;
   final String? logo;
   final String phone;
@@ -28,6 +29,7 @@ class InsuranceCompanyModel extends Equatable {
   static InsuranceCompanyModel get defaultModel {
     return const InsuranceCompanyModel(
       name: '',
+      decription: '',
       username: '',
       phone: '',
       formalPhone: '',
@@ -44,6 +46,7 @@ class InsuranceCompanyModel extends Equatable {
   const InsuranceCompanyModel({
     this.id = -1,
     required this.name,
+    required this.decription,
     required this.username,
     this.logo,
     required this.phone,
@@ -68,6 +71,7 @@ class InsuranceCompanyModel extends Equatable {
   InsuranceCompanyModel copyWith({
     int? id,
     String? name,
+    String? decription,
     String? username,
     String? logo,
     String? phone,
@@ -91,6 +95,7 @@ class InsuranceCompanyModel extends Equatable {
     return InsuranceCompanyModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      decription: decription ?? this.decription,
       username: username ?? this.username,
       logo: logo ?? this.logo,
       phone: phone ?? this.phone,
@@ -116,6 +121,7 @@ class InsuranceCompanyModel extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'decription': decription,
       'name': name,
       'username': username,
       'logo': logo,
@@ -143,6 +149,7 @@ class InsuranceCompanyModel extends Equatable {
     return InsuranceCompanyModel(
       id: map['id']?.toInt() ?? 0,
       name: map['name'] ?? '',
+      decription: map['decription'] ?? '',
       username: map['username'] ?? '',
       logo: map['logo'],
       phone: map['phone'] ?? '',
@@ -171,14 +178,10 @@ class InsuranceCompanyModel extends Equatable {
       InsuranceCompanyModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'InsuranceCompanyModel(id: $id, name: $name, username: $username, logo: $logo, phone: $phone, formalPhone: $formalPhone, email: $email, formalEmail: $formalEmail, country: $country, adress1: $adress1, adress2: $adress2, state: $state, province: $province, zipCode: $zipCode, website: $website, facebook: $facebook, instgram: $instgram, snapchat: $snapchat, twitter: $twitter, youtube: $youtube, password: $password)';
-  }
-
-  @override
   List<Object?> get props {
     return [
       id,
+      decription,
       name,
       username,
       logo,
@@ -200,5 +203,10 @@ class InsuranceCompanyModel extends Equatable {
       youtube,
       password,
     ];
+  }
+
+  @override
+  String toString() {
+    return 'InsuranceCompanyModel(id: $id, name: $name, decription: $decription, username: $username, logo: $logo, phone: $phone, formalPhone: $formalPhone, email: $email, formalEmail: $formalEmail, country: $country, adress1: $adress1, adress2: $adress2, state: $state, province: $province, zipCode: $zipCode, website: $website, facebook: $facebook, instgram: $instgram, snapchat: $snapchat, twitter: $twitter, youtube: $youtube, password: $password)';
   }
 }
