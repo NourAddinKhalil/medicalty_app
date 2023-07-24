@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 
 class ClientModel extends Equatable {
   final int id;
+  final String nameDescription;
   final String firstName;
   final String lastName;
   final String? image;
@@ -22,6 +23,7 @@ class ClientModel extends Equatable {
 
   static ClientModel get defaultModel {
     return const ClientModel(
+      nameDescription: '',
       firstName: '',
       lastName: '',
       companyName: '',
@@ -37,6 +39,7 @@ class ClientModel extends Equatable {
 
   const ClientModel({
     this.id = -1,
+    required this.nameDescription,
     required this.firstName,
     required this.lastName,
     this.image,
@@ -56,6 +59,7 @@ class ClientModel extends Equatable {
 
   ClientModel copyWith({
     int? id,
+    String? nameDescription,
     String? firstName,
     String? lastName,
     String? image,
@@ -74,6 +78,7 @@ class ClientModel extends Equatable {
   }) {
     return ClientModel(
       id: id ?? this.id,
+      nameDescription: nameDescription ?? this.nameDescription,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       image: image ?? this.image,
@@ -95,6 +100,7 @@ class ClientModel extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'name_description': nameDescription,
       'first_name': firstName,
       'last_name': lastName,
       'image': image,
@@ -116,6 +122,7 @@ class ClientModel extends Equatable {
   factory ClientModel.fromMap(Map<String, dynamic> map) {
     return ClientModel(
       id: map['id']?.toInt() ?? 0,
+      nameDescription: map['name_description'] ?? '',
       firstName: map['first_name'] ?? '',
       lastName: map['last_name'] ?? '',
       image: map['image'],
@@ -140,14 +147,10 @@ class ClientModel extends Equatable {
       ClientModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'ClientModel(id: $id, firstName: $firstName, lastName: $lastName, image: $image, companyName: $companyName, phone: $phone, phoneDescription: $phoneDescription, email: $email, emialDescription: $emailDescription, address: $address, address2: $address2, country: $country, city: $city, province: $province, zipCode: $zipCode, website: $website)';
-  }
-
-  @override
   List<Object?> get props {
     return [
       id,
+      nameDescription,
       firstName,
       lastName,
       image,
@@ -164,5 +167,10 @@ class ClientModel extends Equatable {
       zipCode,
       website,
     ];
+  }
+
+  @override
+  String toString() {
+    return 'ClientModel(id: $id, nameDescription: $nameDescription, firstName: $firstName, lastName: $lastName, image: $image, companyName: $companyName, phone: $phone, phoneDescription: $phoneDescription, email: $email, emailDescription: $emailDescription, address: $address, address2: $address2, country: $country, city: $city, province: $province, zipCode: $zipCode, website: $website)';
   }
 }

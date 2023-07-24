@@ -23,6 +23,16 @@ class CenterScreenController extends HelpersController {
   final youtubeTxtField = TextEditingController();
   var model = CenterModel.defaultModel;
 
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      logo: _image,
+    );
+    update(['image']);
+  }
+
   @override
   void dispose() {
     centerNameTxtField.dispose();

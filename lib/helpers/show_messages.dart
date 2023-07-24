@@ -46,7 +46,7 @@ class ShowAnyMessages {
       context: context,
       pageBuilder: (context, animation, secondaryAnimation) {
         return AlertDialog(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor: Colors.white,
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -90,7 +90,7 @@ class ShowAnyMessages {
                 },
                 allowOnlineOnly: false,
                 allowRegisterOnly: false,
-                title: 'موافق',
+                title: 'OK',
                 style: TextButton.styleFrom(
                   textStyle: FontSizes.h7?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -137,9 +137,9 @@ class ShowAnyMessages {
                 : ColorsConstant.snackbarNoramlBackground,
         duration: const Duration(seconds: 3),
         animationDuration: const Duration(seconds: 1),
-        overlayBlur: 0.5,
+        overlayBlur: 0.3,
         barBlur: 0.5,
-        borderRadius: 12.r,
+        borderRadius: 20.r,
         margin: CustomEdgeInsets.all(12),
       ),
     );

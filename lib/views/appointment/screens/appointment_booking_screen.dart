@@ -66,16 +66,13 @@ class AppointmentBookingScreen
                       },
                     ),
                     const VerticalSizedBox(15),
-                    Center(
+                    //TODO add doctor customer images here when picking
+                    const Center(
                       child: CustomImageViewer(
                         enableRadius: true,
-                        enableTabToChoose: true,
+                        enableTabToChoose: false,
                         height: 120,
                         width: 120,
-                        index: 0,
-                        imageHandeler: (index, image) {
-                          //
-                        },
                       ),
                     ),
                     const VerticalSizedBox(35),
@@ -140,16 +137,12 @@ class AppointmentBookingScreen
                       },
                     ),
                     const VerticalSizedBox(15),
-                    Center(
+                    const Center(
                       child: CustomImageViewer(
                         enableRadius: true,
-                        enableTabToChoose: true,
+                        enableTabToChoose: false,
                         height: 120,
                         width: 120,
-                        index: 0,
-                        imageHandeler: (index, image) {
-                          //
-                        },
                       ),
                     ),
                     const VerticalSizedBox(35),

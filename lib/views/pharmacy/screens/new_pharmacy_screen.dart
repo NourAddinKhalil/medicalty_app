@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:medicalty/constants/themes/colors_constant.dart';
 import 'package:medicalty/controllers/screen_controllers/pharmacy_screen_controller.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
+import 'package:medicalty/helpers/image_string_helpers.dart';
 import 'package:medicalty/helpers/validators.dart';
 import 'package:medicalty/utiles/app_background.dart';
 import 'package:medicalty/utiles/appbar_utiles/custom_appbar.dart';
@@ -46,10 +47,12 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                           enableTabToChoose: true,
                           height: 120,
                           width: 120,
-                          index: 0,
-                          imageHandeler: (index, image) {
-                            //
-                          },
+                          allowedExtensions:
+                              ImageStringHelpers.imagesExtensions,
+                          showChooseDocument: false,
+                          showChooseVideo: false,
+                          image: controller.image,
+                          onImageChoosen: controller.onImageChoosen,
                         ),
                       ),
                       const VerticalSizedBox(15),
@@ -70,7 +73,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.checkIfNotEmpty,
                         icon: Icons.contacts_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            name: value,
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -84,7 +89,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.checkIfNotEmpty,
                         icon: Icons.person_add_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            username: value,
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -98,7 +105,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validatePhoneNumberField,
                         icon: Icons.phone_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            phone: value,
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -114,7 +123,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validatePhoneNumberField,
                         icon: Icons.phone_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            workPhone: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -128,7 +139,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateEmail,
                         icon: Icons.email_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            email: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -142,7 +155,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateEmail,
                         icon: Icons.email_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            workEmail: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -156,7 +171,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: null,
                         icon: Icons.location_city_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            country: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -170,7 +187,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: null,
                         icon: Icons.location_on_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            adress1: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -183,7 +202,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         textInputAction: TextInputAction.next,
                         validator: null,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            adress2: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -197,7 +218,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: null,
                         icon: Icons.flag_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            state: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -210,7 +233,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         textInputAction: TextInputAction.next,
                         validator: null,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            province: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -224,7 +249,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: null,
                         icon: Icons.folder_zip_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            zipCode: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(20),
@@ -247,7 +274,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         icon: FontAwesomeIcons.link,
                         iconSize: 18,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            website: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -261,7 +290,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateURL,
                         icon: FontAwesomeIcons.facebookF,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            facebook: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -275,7 +306,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateURL,
                         icon: FontAwesomeIcons.instagram,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            instgram: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -289,7 +322,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateURL,
                         icon: FontAwesomeIcons.twitter,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            twitter: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -303,7 +338,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateURL,
                         icon: FontAwesomeIcons.linkedin,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            snapchat: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -317,7 +354,9 @@ class NewPharmacyScreen extends GetView<PharmacyScreenController> {
                         validator: Validators.validateURL,
                         icon: FontAwesomeIcons.squareYoutube,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            youtube: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(20),

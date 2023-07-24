@@ -12,6 +12,7 @@ class InvoiceModel extends Equatable {
   final String invoiceAddress;
   final DateTime dueDate;
   final PaymentTypeEnum dueAmontType;
+  final double dueAmont;
   final String accountingCode;
   final String customerAddress;
   final double subtotal;
@@ -26,6 +27,7 @@ class InvoiceModel extends Equatable {
     return InvoiceModel(
       payFor: -1,
       invoiceAddress: '',
+      dueAmont: 0.00,
       dueDate: DateTime(1999),
       dueAmontType: PaymentTypeEnum.net25,
       accountingCode: '',
@@ -44,6 +46,7 @@ class InvoiceModel extends Equatable {
     this.id = -1,
     required this.payFor,
     required this.invoiceAddress,
+    required this.dueAmont,
     required this.dueDate,
     required this.dueAmontType,
     required this.accountingCode,
@@ -63,6 +66,7 @@ class InvoiceModel extends Equatable {
     String? invoiceAddress,
     DateTime? dueDate,
     PaymentTypeEnum? dueAmontType,
+    double? dueAmont,
     String? accountingCode,
     String? customerAddress,
     double? subtotal,
@@ -79,6 +83,7 @@ class InvoiceModel extends Equatable {
       invoiceAddress: invoiceAddress ?? this.invoiceAddress,
       dueDate: dueDate ?? this.dueDate,
       dueAmontType: dueAmontType ?? this.dueAmontType,
+      dueAmont: dueAmont ?? this.dueAmont,
       accountingCode: accountingCode ?? this.accountingCode,
       customerAddress: customerAddress ?? this.customerAddress,
       subtotal: subtotal ?? this.subtotal,
@@ -98,6 +103,7 @@ class InvoiceModel extends Equatable {
       'invoiceAddress': invoiceAddress,
       'dueDate': dueDate.millisecondsSinceEpoch,
       'dueAmontType': dueAmontType.name,
+      'dueAmont': dueAmont,
       'accountingCode': accountingCode,
       'customerAddress': customerAddress,
       'subtotal': subtotal,
@@ -116,6 +122,7 @@ class InvoiceModel extends Equatable {
       payFor: map['payFor']?.toInt() ?? 0,
       invoiceAddress: map['invoiceAddress'] ?? '',
       dueDate: DateTime.fromMillisecondsSinceEpoch(map['dueDate']),
+      dueAmont: map['dueAmont']?.toDouble() ?? 0.0,
       dueAmontType: PaymentTypeEnum.values.firstWhereOrNull(
             (element) {
               return element.name == map['dueAmontType'];
@@ -140,15 +147,11 @@ class InvoiceModel extends Equatable {
       InvoiceModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'InvoiceModel(id: $id, payFor: $payFor, invoiceAddress: $invoiceAddress, dueDate: $dueDate, dueAmontType: $dueAmontType, accountingCode: $accountingCode, customerAddress: $customerAddress, subtotal: $subtotal, discount: $discount, tax: $tax, deposite: $deposite, total: $total, message: $message, image: $image)';
-  }
-
-  @override
   List<Object> get props {
     return [
       id,
       payFor,
+      dueAmont,
       invoiceAddress,
       dueDate,
       dueAmontType,
@@ -162,5 +165,10 @@ class InvoiceModel extends Equatable {
       message,
       image,
     ];
+  }
+
+  @override
+  String toString() {
+    return 'InvoiceModel(id: $id, payFor: $payFor, invoiceAddress: $invoiceAddress, dueDate: $dueDate, dueAmontType: $dueAmontType, dueAmont: $dueAmont, accountingCode: $accountingCode, customerAddress: $customerAddress, subtotal: $subtotal, discount: $discount, tax: $tax, deposite: $deposite, total: $total, message: $message, image: $image)';
   }
 }

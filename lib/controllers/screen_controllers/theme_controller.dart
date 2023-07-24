@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 
-import 'package:medicalty/controllers/master_controller.dart';
+import 'package:medicalty/controllers/helpers_controller.dart';
 import 'package:medicalty/services/app_settings.dart';
 
-class ThemeController extends MasterController {
+class ThemeController extends HelpersController {
   ThemeMode _themeMode = ThemeMode.system;
   final themeModes = {
     0: ThemeMode.system,

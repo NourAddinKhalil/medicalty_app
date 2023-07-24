@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicalty/controllers/helpers_controller.dart';
+import 'package:medicalty/models/request_model.dart';
 
 class RequestScreenController extends HelpersController {
   final clientTxtField = TextEditingController();
@@ -20,6 +21,18 @@ class RequestScreenController extends HelpersController {
   final requestAddressTxtField = TextEditingController();
   final serviceDetailsTxtField = TextEditingController();
   final notesTxtField = TextEditingController();
+
+  var model = RequestModel.defaultModel;
+
+  String _image = '';
+  String get image => _image;
+  void onImageChoosen(String? image) {
+    _image = image ?? '';
+    model = model.copyWith(
+      image: _image,
+    );
+    update(['image']);
+  }
 
   @override
   void dispose() {

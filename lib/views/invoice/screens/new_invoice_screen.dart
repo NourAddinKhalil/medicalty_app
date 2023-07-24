@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:medicalty/constants/themes/colors_constant.dart';
+import 'package:medicalty/controllers/screen_controllers/money_screen_controller.dart';
 import 'package:medicalty/controllers/screen_controllers/invoice_screen_controller.dart';
+import 'package:medicalty/helpers/convert_to_date_time.dart';
+import 'package:medicalty/helpers/enums.dart';
+import 'package:medicalty/helpers/enums_helpers/payment_types_helper.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
+import 'package:medicalty/helpers/image_string_helpers.dart';
 import 'package:medicalty/helpers/show_date_time_picker.dart';
 import 'package:medicalty/helpers/validators.dart';
 import 'package:medicalty/utiles/app_background.dart';
@@ -16,6 +21,7 @@ import 'package:medicalty/utiles/form_utiles/custom_suggestion_helpers.dart';
 import 'package:medicalty/utiles/form_utiles/custom_text_field.dart';
 import 'package:medicalty/utiles/form_utiles/custom_text_form_field.dart';
 import 'package:medicalty/utiles/images_utiles/custom_image_viewer.dart';
+import 'package:medicalty/views/invoice/screens/pay_amount_screen.dart';
 import 'package:medicalty/views/invoice/widgets/money_details_invoice.dart';
 import 'package:medicalty/views/message/screens/message_screen.dart';
 
@@ -50,13 +56,14 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                       Center(
                         child: CustomImageViewer(
                           enableRadius: true,
-                          enableTabToChoose: true,
+                          enableTabToChoose: false,
                           height: 120,
                           width: 120,
-                          index: 0,
-                          imageHandeler: (index, image) {
-                            //
-                          },
+                          image: controller.companyLogo,
+                          allowedExtensions:
+                              ImageStringHelpers.imagesExtensions,
+                          showChooseDocument: false,
+                          showChooseVideo: false,
                         ),
                       ),
                       const VerticalSizedBox(15),
@@ -100,7 +107,9 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                         validator: Validators.checkIfNotEmpty,
                         icon: Icons.location_on_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            invoiceAddress: value,
+                          );
                         },
                         showlable: false,
                         showHint: true,
@@ -116,7 +125,10 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                         validator: Validators.validateDateFormat,
                         icon: Icons.calendar_month_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            dueDate:
+                                DateTimeHelpers.convertStringToDate(value!),
+                          );
                         },
                         onTap: () async {
                           controller.dateTxtField.text =
@@ -127,7 +139,7 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                         showHint: true,
                       ),
                       const VerticalSizedBox(15),
-                      CustomTextField(
+                      CustomTextField<PaymentTypesClass>(
                         title: 'Payment Due',
                         hintText: 'Payment Due',
                         horizantalPadding: 20,
@@ -135,20 +147,50 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                         showlable: false,
                         controller: controller.paymentDueTxtField,
                         suggestionCallback: (val) {
-                          return [];
+                          return paymentTypesList;
                         },
-                        fieldList: const [],
-                        onSuggestionSelected: (selected) {},
+                        fieldList: paymentTypesList,
+                        onSuggestionSelected: controller.onPaymentTypeSelected,
                         itemBuilder: (context, suggestion) {
                           return CustomSuggestionHelpers
                               .itemPrimativTypesBuilder(
                             context,
-                            suggestion,
+                            suggestion.name,
                             controller.paymentDueTxtField.text,
                           );
                         },
                       ),
                       const VerticalSizedBox(15),
+                      GetBuilder<InvoiceScreenController>(
+                        id: 'pay_field',
+                        builder: (controller) {
+                          if (!controller.showPayTextField) {
+                            return const SizedBox();
+                          }
+                          return Column(
+                            children: [
+                              CustomTextFormField(
+                                label: 'Paymnet amount',
+                                controller: controller.paymentTxtField,
+                                horizantalPadding: 20,
+                                textInputAction: TextInputAction.next,
+                                textInputType: TextInputType.number,
+                                validator: (value) {
+                                  return Validators.validateMoneyField(
+                                      value, false);
+                                },
+                                onSaved: (value) {
+                                  controller.model = controller.model.copyWith(
+                                    dueAmont:
+                                        controller.paymentTxtField.doubleValue,
+                                  );
+                                },
+                              ),
+                              const VerticalSizedBox(25),
+                            ],
+                          );
+                        },
+                      ),
                       SelectItemButton(
                         title: 'Select Items',
                         iconOnEnd: true,
@@ -188,7 +230,9 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                         icon: Icons.display_settings_outlined,
                         validator: null,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            accountingCode: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(15),
@@ -203,14 +247,16 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                         validator: null,
                         icon: Icons.location_on_outlined,
                         onSaved: (value) {
-                          // _signupModel = _signupModel.copyWith(name: value);
+                          controller.model = controller.model.copyWith(
+                            customerAddress: value,
+                          );
                         },
                       ),
                       const VerticalSizedBox(30),
                       Center(
                         child: Container(
-                          margin: CustomEdgeInsets.horizontal(50),
-                          padding: CustomEdgeInsets.symmetric(12, 40),
+                          margin: CustomEdgeInsets.horizontal(40),
+                          padding: CustomEdgeInsets.symmetric(12, 30),
                           decoration: BoxDecoration(
                             color: const Color(0xFFB0C929).withOpacity(0.3),
                             borderRadius: BorderRadius.circular(12.r),
@@ -220,115 +266,169 @@ class NewInvoiceScreen extends GetView<InvoiceScreenController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               // subtotal
-                              // GetBuilder<InvoiceScreenController>(
-                              //   id: 'subtotal',
-                              //   builder: (controller) {
-                              //     return
-                              MoneyDetailsInvoice(
-                                title: 'Subtotal',
-                                amount: 0.00, //controller.subTotal,
-                                fontSize: FontSizes.h7?.fontSize,
-                                onPressed: () {},
-                                showAddText: false,
+                              GetBuilder<InvoiceScreenController>(
+                                id: 'subtotal',
+                                builder: (controller) {
+                                  return MoneyDetailsInvoice(
+                                    title: 'Subtotal',
+                                    amount: controller.subTotal,
+                                    fontSize: FontSizes.h7?.fontSize,
+                                    onPressed: () {},
+                                    showAddText: false,
+                                  );
+                                },
                               ),
-                              //   },
-                              // ),
                               const VerticalSizedBox(8),
                               // Discount
-                              // GetBuilder<DiscountScreenController>(
-                              //   init: DiscountScreenController(),
-                              //   builder: (disCtrl) {
-                              // if (disCtrl.getDiscount > 0) {
-                              //   controller.discount = disCtrl.getDiscount;
-                              //   controller.discountType = disCtrl.moneyType;
-                              // }
-                              // return
-                              MoneyDetailsInvoice(
-                                title: 'Discount',
-                                amount: 0.00, //disCtrl.getDiscount,
-                                onPressed: () {
-                                  // Get.toNamed(AppRouter.discountRoute);
+                              GetBuilder<MoneyScreenController>(
+                                init: MoneyScreenController('Discount'),
+                                // global: false,
+                                // assignId: true,
+                                // id: 'dis',
+                                // key: const Key('dis'),
+                                tag: 'Dis',
+                                builder: (disCtrl) {
+                                  if (disCtrl.getAmount > 0) {
+                                    controller.discount = disCtrl.getAmount;
+                                    controller.discountType = disCtrl.moneyType;
+                                  }
+                                  return MoneyDetailsInvoice(
+                                    title: 'Discount',
+                                    amount: disCtrl.getAmount,
+                                    onPressed: () {
+                                      Get.to(() => const PayAmountScreen(
+                                            tagName: 'Dis',
+                                          ));
+                                    },
+                                    // color: ColorsConstant.green1,
+                                    isFixed: controller.isDiscountTypeFixed,
+                                  );
                                 },
-                                // color: ColorsConstant.green1,
-                                isFixed: true, //controller.isDiscountTypeFixed,
                               ),
-                              //   },
-                              // ),
                               const VerticalSizedBox(8),
                               // tax
-                              // GetBuilder<CustomSearchController<TaxModel>>(
-                              //   init: CustomSearchController<TaxModel>(
-                              //       defaultModel: TaxModel.defaultModel),
-                              //   id: 'tax',
-                              //   builder: (searchCtrl) {
-                              //     final isThere = searchCtrl.isModelSelected();
-                              //     if (isThere) {
-                              //       controller.taxRate = searchCtrl.list.first.ratio;
-                              //     }
-                              //     return
-                              MoneyDetailsInvoice(
-                                title: 'Tax',
-                                amount:
-                                    0.00, //isThere ? searchCtrl.list[0].ratio : 0.00,
-                                onPressed: () {
-                                  // Get.toNamed(AppRouter.searchTaxRoute);
+                              GetBuilder<MoneyScreenController>(
+                                init: MoneyScreenController(
+                                  'Tax',
+                                  onlyOneType: true,
+                                  type: MoneyTypeEnum.ratio,
+                                ),
+                                // id: 'tax',
+                                // global: false,
+                                // assignId: true,
+                                // key: const Key('tax'),
+                                tag: 'Tax',
+                                builder: (taxCtrl) {
+                                  if (taxCtrl.getAmount > 0) {
+                                    controller.taxRate = taxCtrl.getAmount;
+                                  }
+                                  return MoneyDetailsInvoice(
+                                    title: 'Tax',
+                                    amount: taxCtrl.getAmount,
+                                    onPressed: () {
+                                      Get.to(() => const PayAmountScreen(
+                                            tagName: 'Tax',
+                                          ));
+                                    },
+                                    // color: ColorsConstant.green1,
+                                    isFixed: false,
+                                  );
                                 },
-                                // color: ColorsConstant.green1,
-                                isFixed: false,
                               ),
-                              //   },
-                              // ),
                               const VerticalSizedBox(8),
                               // deposite
-                              // GetBuilder<DepositeScreenController>(
-                              //   init: DepositeScreenController(),
-                              //   builder: (depoCtrl) {
-                              //     if (depoCtrl.getDeposite > 0) {
-                              //       controller.deposite = depoCtrl.getDeposite;
-                              //       controller.depositeType = depoCtrl.moneyType;
-                              //     }
-                              //     return
-                              MoneyDetailsInvoice(
-                                title: 'Request deposite',
-                                amount: 0.00, //depoCtrl.getDeposite,
-                                onPressed: () {
-                                  // Get.toNamed(AppRouter.depositeRoute);
+                              GetBuilder<MoneyScreenController>(
+                                init: MoneyScreenController('Deposite'),
+                                // id: 'depo',
+                                // global: false,
+                                // assignId: true,
+                                // key: const Key('depo'),
+                                tag: 'Depo',
+                                builder: (depoCtrl) {
+                                  if (depoCtrl.getAmount > 0) {
+                                    controller.deposite = depoCtrl.getAmount;
+                                    controller.depositeType =
+                                        depoCtrl.moneyType;
+                                  }
+                                  return MoneyDetailsInvoice(
+                                    title: 'Request deposite',
+                                    amount: depoCtrl.getAmount,
+                                    onPressed: () {
+                                      Get.to(() => const PayAmountScreen(
+                                            tagName: 'Depo',
+                                          ));
+                                    },
+                                    // color: ColorsConstant.green1,
+                                    isFixed: controller.isDepositeTypeFixed,
+                                  );
                                 },
-                                // color: ColorsConstant.green1,
-                                isFixed: true, //controller.isDepositeTypeFixed,
                               ),
-                              //   },
-                              // ),
 
                               const VerticalSizedBox(8),
                               // total
-                              // GetBuilder<InvoiceScreenController>(
-                              //   id: 'total',
-                              //   builder: (controller) {
-                              //     return
-                              MoneyDetailsInvoice(
-                                title: 'Total',
-                                amount: 0.00, //controller.total,
-                                fontSize: FontSizes.h7?.fontSize,
-                                onPressed: () {},
-                                showAddText: false,
+                              GetBuilder<InvoiceScreenController>(
+                                id: 'total',
+                                builder: (controller) {
+                                  return MoneyDetailsInvoice(
+                                    title: 'Total',
+                                    amount: controller.total,
+                                    fontSize: FontSizes.h7?.fontSize,
+                                    onPressed: () {},
+                                    showAddText: false,
+                                  );
+                                },
                               ),
-                              //   },
-                              // ),
                               const VerticalSizedBox(8),
                             ],
                           ),
                         ),
                       ),
                       const VerticalSizedBox(15),
+
+                      // Message
                       SelectItemButton(
+                        isSelected: false,
                         title: 'Message Client',
                         iconOnEnd: true,
                         iconColor: ColorsConstant.green1,
-                        onTab: () {
-                          Get.to(() => const MessageScreen());
+                        onTab: () async {
+                          final message = await Get.to<String?>(
+                            () => const MessageScreen(),
+                            transition: Transition.downToUp,
+                          );
+
+                          if (message != null) {
+                            controller.clientMessage = message;
+                          }
+                        },
+                        onClearPressed: () {
+                          controller.clientMessage = '';
                         },
                       ),
+                      // Message details
+                      GetBuilder<InvoiceScreenController>(
+                        id: 'message',
+                        builder: (controller) {
+                          final selected = controller.isMessageWritten;
+                          if (!selected) return const SizedBox();
+                          return Padding(
+                            padding: CustomEdgeInsets.horizontal(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const VerticalSizedBox(15),
+                                Text(
+                                  controller.clientMessage,
+                                  style: FontSizes.h6?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+
                       const VerticalSizedBox(30),
                     ],
                   );

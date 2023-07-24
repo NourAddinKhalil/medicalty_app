@@ -7,7 +7,6 @@ import 'package:medicalty/constants/themes/colors_constant.dart';
 import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/helpers/show_custom_dialog.dart';
 import 'package:medicalty/utiles/buttons_utiles/custom_icon_button.dart';
-import 'package:medicalty/utiles/custom_edge_insets.dart';
 import 'package:medicalty/utiles/images_utiles/image_helpers.dart';
 
 class CustomImageViewer extends StatefulWidget {
@@ -19,10 +18,13 @@ class CustomImageViewer extends StatefulWidget {
     this.enableRadius = false,
     this.saveToDevice = false,
     this.enableTabToChoose = true,
-    this.index,
-    this.imageHandeler,
+    this.onImageChoosen,
     this.image,
     this.id = '',
+    this.allowedExtensions,
+    this.showChooseDocument = true,
+    this.showChooseVideo = true,
+    this.showChooseImage = true,
   }) : super(key: key);
 
   final double height;
@@ -30,10 +32,13 @@ class CustomImageViewer extends StatefulWidget {
   final bool enableRadius;
   final bool saveToDevice;
   final bool enableTabToChoose;
-  final int? index;
-  final void Function(int index, File? image)? imageHandeler;
-  final File? image;
+  final void Function(String? image)? onImageChoosen;
+  final String? image;
   final String id;
+  final bool showChooseImage;
+  final bool showChooseVideo;
+  final bool showChooseDocument;
+  final List<String>? allowedExtensions;
   // final File? driverImage;
 
   @override
@@ -48,19 +53,23 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
   void initState() {
     super.initState();
     if (widget.image != null) {
-      image = File(widget.image!.path);
+      image = File(widget.image!);
     }
   }
 
   @override
   void didUpdateWidget(covariant CustomImageViewer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    image = widget.image;
+    image = File(widget.image!);
   }
 
   void _onTab() async {
     final imagePath = await ShowCustomDialog.showCustomDialogPicker(
-      // context,
+      allowedExtensions: widget.allowedExtensions,
+      showChooseDocument: widget.showChooseDocument,
+      showChooseImage: widget.showChooseImage,
+      showChooseVideo: widget.showChooseVideo,
+      multiSelect: false,
       isCircle: widget.enableRadius,
       saveToDevice: widget.saveToDevice,
     );
@@ -69,7 +78,7 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
       setState(() {
         image = File(imagePath.first);
         if (widget.enableTabToChoose) {
-          widget.imageHandeler!(widget.index!, image!);
+          widget.onImageChoosen!(image!.path);
         }
       });
     }
@@ -100,9 +109,10 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
               widget.height,
               pic: Assets.svgs.profileEditImg,
             )
-          : Padding(
-              padding: CustomEdgeInsets.all(4.0),
-              child: const Text('لا يوجد صورة'),
+          : ImageHelpers.getSVGAssetImage(
+              widget.width,
+              widget.height,
+              pic: Assets.svgs.profileImg,
             ),
     );
   }
@@ -170,7 +180,7 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
                       setState(() {
                         image = null;
                         if (widget.enableTabToChoose) {
-                          widget.imageHandeler!(widget.index!, null);
+                          widget.onImageChoosen!(null);
                         }
                       });
                     }

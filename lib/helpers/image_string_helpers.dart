@@ -9,6 +9,17 @@ class ImageStringHelpers {
     return path.extension(file);
   }
 
+  static const imagesExtensions = [
+    'jpg',
+    'jpeg',
+    'gif',
+    'png',
+    'svg',
+  ];
+  static const videosExtensions = [
+    'mp4',
+  ];
+
   static bool isImage(String file) {
     final images = [
       '.jpg',

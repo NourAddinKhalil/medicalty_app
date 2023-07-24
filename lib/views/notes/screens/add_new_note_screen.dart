@@ -50,7 +50,7 @@ class AddNewNoteScreen extends StatelessWidget {
               ),
               const VerticalSizedBox(15),
               SelectAttatchmentBtn(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.transparent,
                 buttonTitle: 'Attatch files',
                 titleStyle: FontSizes.h6?.copyWith(
                   color: Colors.black,

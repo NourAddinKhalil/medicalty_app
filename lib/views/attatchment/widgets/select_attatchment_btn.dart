@@ -21,6 +21,11 @@ class SelectAttatchmentBtn extends StatelessWidget {
     this.iconOnEnd = false,
     this.icon = FontAwesomeIcons.plus,
     this.onTap,
+    this.allowedExtensions,
+    this.showChooseDocument = true,
+    this.showChooseVideo = true,
+    this.showChooseImage = true,
+    this.tagName,
   });
   final String buttonTitle;
   final List<String> attatchments;
@@ -31,6 +36,11 @@ class SelectAttatchmentBtn extends StatelessWidget {
   final bool iconOnEnd;
   final IconData icon;
   final void Function()? onTap;
+  final bool showChooseImage;
+  final bool showChooseVideo;
+  final bool showChooseDocument;
+  final List<String>? allowedExtensions;
+  final String? tagName;
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +58,15 @@ class SelectAttatchmentBtn extends StatelessWidget {
           // subTitle:
           //     selected ? controller.messageTxtField.text : null,
           onTab: onTap ??
-              () async {
-                await Get.to(
-                  () => const NewAttachmentScreen(),
+              () {
+                Get.to(
+                  () => NewAttachmentScreen(
+                    allowedExtensions: allowedExtensions,
+                    showChooseDocument: showChooseDocument,
+                    showChooseImage: showChooseImage,
+                    showChooseVideo: showChooseVideo,
+                    tagName: tagName,
+                  ),
                   transition: Transition.downToUp,
                 );
               },
@@ -58,6 +74,7 @@ class SelectAttatchmentBtn extends StatelessWidget {
         ),
         GetBuilder<AttatchmentScreenController>(
           id: 'selected_attatchment',
+          tag: tagName,
           init: AttatchmentScreenController(attatchments),
           builder: (controller) {
             if (controller.selectedAttatchmets.isEmpty) {

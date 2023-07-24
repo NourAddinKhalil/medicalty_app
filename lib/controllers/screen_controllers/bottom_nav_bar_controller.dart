@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:medicalty/controllers/helpers_controller.dart';
 import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/utiles/images_utiles/image_helpers.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import 'package:medicalty/controllers/master_controller.dart';
 import 'package:medicalty/views/main/screens/search/search_screen.dart';
 
-class BottomNavBarController extends MasterController {
+class BottomNavBarController extends HelpersController {
   int index = 0;
   final homeIndex = 0;
   // late Map<String, BottomNavigationBarItem> items;
