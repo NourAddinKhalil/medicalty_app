@@ -9,7 +9,7 @@ class CircleSqureImage extends StatelessWidget {
   const CircleSqureImage({
     Key? key,
     required this.pic,
-    this.radius = 0.0,
+    this.radius,
     required this.width,
     required this.height,
     this.isCircle = true,
@@ -33,18 +33,58 @@ class CircleSqureImage extends StatelessWidget {
       //   color: Colors.grey,
       // ),
     ),
+    this.fit = BoxFit.contain,
     // this.showTextError = false,
   }) : super(key: key);
 
   static const Color colorBorder = Colors.grey;
   final String pic;
-  final double radius;
+  final double? radius;
   final double width;
   final double height;
   final String id;
   // final String assetImage;
   final bool isCircle;
   final Decoration? decoration;
+  final BoxFit fit;
+
+  Widget _buildImage() {
+    final isSvg =
+        '.svg' == ImageStringHelpers.getFileExtension(pic).toLowerCase();
+    final isAssets = pic.contains('assets/');
+    return pic != '' && pic.isNotEmpty
+        ? pic.isURL
+            ? ImageHelpers.getNetworkImage(
+                pic,
+                width,
+                height,
+                id,
+              )
+            : isSvg
+                ? ImageHelpers.getSVGAssetImage(
+                    width,
+                    height,
+                    pic: pic,
+                    boxFit: fit,
+                  )
+                : isAssets
+                    ? ImageHelpers.getAssetImage(
+                        width,
+                        height,
+                        pic: pic,
+                        boxFit: fit,
+                      )
+                    : ImageHelpers.getFileImage(
+                        pic,
+                        width,
+                        height,
+                      )
+        : ImageHelpers.getAssetImage(
+            width,
+            height,
+            boxFit: fit,
+          );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,49 +92,19 @@ class CircleSqureImage extends StatelessWidget {
     if (!isCircle) {
       return Container(
         decoration: decoration,
-        child: pic.isEmpty || pic == ''
-            ? ImageHelpers.getAssetImage(
-                width,
-                height,
-              )
-            : ImageHelpers.getNetworkImage(
-                pic,
-                width,
-                height,
-                id,
-              ),
+        width: width.w,
+        height: height.w,
+        child: _buildImage(),
       );
     }
     return GetBuilder<ThemeController>(
       builder: (prov) {
-        final isSvg =
-            '.svg' == ImageStringHelpers.getFileExtension(pic).toLowerCase();
         final dark = prov.isDarkMode;
         return CircleAvatar(
-          radius: radius.r,
+          radius: radius?.r ?? (height / 2).r,
           backgroundColor: dark ? Colors.black26 : Colors.grey.shade100,
           child: ClipOval(
-            child: pic != '' &&
-                    pic.isNotEmpty //&& !pic.contains('assets/images/')
-                ? pic.contains(
-                        'https://firebasestorage') // || pic.contains('https')
-                    ? ImageHelpers.getNetworkImage(
-                        pic,
-                        width,
-                        height,
-                        id,
-                      )
-                    : isSvg
-                        ? ImageHelpers.getSVGAssetImage(width, height, pic: pic)
-                        : ImageHelpers.getFileImage(
-                            pic,
-                            width,
-                            height,
-                          )
-                : ImageHelpers.getAssetImage(
-                    width,
-                    height,
-                  ),
+            child: _buildImage(),
           ),
         );
       },

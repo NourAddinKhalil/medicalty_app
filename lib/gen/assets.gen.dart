@@ -168,6 +168,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/HomepageBack.png
+  AssetGenImage get homepageBack =>
+      const AssetGenImage('assets/images/HomepageBack.png');
+
   /// File path: assets/images/Hospital.png
   AssetGenImage get hospital =>
       const AssetGenImage('assets/images/Hospital.png');
@@ -195,12 +199,27 @@ class $AssetsImagesGen {
   AssetGenImage get physiotherapy =>
       const AssetGenImage('assets/images/Physiotherapy.png');
 
+  /// File path: assets/images/ads.png
+  AssetGenImage get ads => const AssetGenImage('assets/images/ads.png');
+
   /// File path: assets/images/blue back.png
   AssetGenImage get blueBack =>
       const AssetGenImage('assets/images/blue back.png');
 
+  /// File path: assets/images/categorypng.png
+  AssetGenImage get categorypng =>
+      const AssetGenImage('assets/images/categorypng.png');
+
+  /// File path: assets/images/doc_famale.png
+  AssetGenImage get docFamale =>
+      const AssetGenImage('assets/images/doc_famale.png');
+
   /// File path: assets/images/doctor.png
   AssetGenImage get doctor => const AssetGenImage('assets/images/doctor.png');
+
+  /// File path: assets/images/doctorImg.png
+  AssetGenImage get doctorImg =>
+      const AssetGenImage('assets/images/doctorImg.png');
 
   /// File path: assets/images/form back.png
   AssetGenImage get formBack =>
@@ -217,6 +236,16 @@ class $AssetsImagesGen {
   AssetGenImage get pharmacy =>
       const AssetGenImage('assets/images/pharmacy.png');
 
+  /// File path: assets/images/social_worker.png
+  AssetGenImage get socialWorker =>
+      const AssetGenImage('assets/images/social_worker.png');
+
+  /// File path: assets/images/surge.png
+  AssetGenImage get surge => const AssetGenImage('assets/images/surge.png');
+
+  /// File path: assets/images/therapy.png
+  AssetGenImage get therapy => const AssetGenImage('assets/images/therapy.png');
+
   /// File path: assets/images/woman1.png
   AssetGenImage get woman1 => const AssetGenImage('assets/images/woman1.png');
 
@@ -228,6 +257,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        homepageBack,
         hospital,
         medicalCenter,
         onPording2Back,
@@ -235,12 +265,19 @@ class $AssetsImagesGen {
         onPording4Back,
         patient,
         physiotherapy,
+        ads,
         blueBack,
+        categorypng,
+        docFamale,
         doctor,
+        doctorImg,
         formBack,
         nurse,
         onPording1Back,
         pharmacy,
+        socialWorker,
+        surge,
+        therapy,
         woman1,
         woman3,
         women2
@@ -252,6 +289,9 @@ class $AssetsSvgsGen {
 
   /// File path: assets/svgs/disease.svg
   String get disease => 'assets/svgs/disease.svg';
+
+  /// File path: assets/svgs/flame.svg
+  String get flame => 'assets/svgs/flame.svg';
 
   /// File path: assets/svgs/maintenance.svg
   String get maintenance => 'assets/svgs/maintenance.svg';
@@ -271,6 +311,7 @@ class $AssetsSvgsGen {
   /// List of all assets
   List<String> get values => [
         disease,
+        flame,
         maintenance,
         noInternet,
         profileEditImg,
