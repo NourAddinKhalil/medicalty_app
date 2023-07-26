@@ -39,6 +39,8 @@ class ColorsConstant {
   static const canceled = Color(0xFFE9353E);
   static const greyBackground = Color(0xFFF3F3F0);
   static const irreugular = Color(0xFFFF9D00);
+  static const green3 = Color(0xFFD0FD3E);
+  static const dark = Color(0xFF2C2C2E);
   static const blueGradient = LinearGradient(colors: [
     Color(0xff109CF1),
     Color(0xff27AEFF),

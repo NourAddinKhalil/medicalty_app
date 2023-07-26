@@ -166,7 +166,7 @@ class _CustomImageViewerState extends State<CustomImageViewer> {
             width: widget.width.w,
             child: _buildInkWell(),
           ),
-        if (image?.path.isNotEmpty ?? false)
+        if ((image?.path.isNotEmpty ?? false) && widget.enableTabToChoose)
           Positioned(
             top: 15.h,
             right: 15.w,

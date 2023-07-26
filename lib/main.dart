@@ -11,6 +11,8 @@ import 'package:medicalty/controllers/screen_controllers/theme_controller.dart';
 import 'package:medicalty/utiles/custom_loading.dart';
 import 'package:medicalty/views/welcom/screens/onboarding_screen.dart';
 
+import 'constants/app/routes.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -55,7 +57,7 @@ class App extends StatelessWidget {
             // locale: DevicePreview.locale(context),
             // builder: DevicePreview.appBuilder,
             title: 'Medicalty',
-            // getPages: const [], //AppRouter.routes,
+            getPages: AppRoutes.routes,
             debugShowCheckedModeBanner: false,
             themeMode: theme.themeMode,
             theme: LightTheme.lightTheme,

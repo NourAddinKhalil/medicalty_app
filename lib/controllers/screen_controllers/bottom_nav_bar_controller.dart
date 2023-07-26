@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medicalty/controllers/helpers_controller.dart';
 import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/utiles/images_utiles/image_helpers.dart';
+import 'package:medicalty/views/main/screens/home/home_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import 'package:medicalty/views/main/screens/search/search_screen.dart';
@@ -112,12 +113,7 @@ class BottomNavBarController extends HelpersController {
   // }
 
   List<Widget> screens = [
-    const ColoredBox(
-      color: Colors.white,
-      child: Center(
-        child: Text('1'),
-      ),
-    ),
+    const HomeScreen(),
     const SearchScreen(),
     const ColoredBox(
       color: Colors.white,
