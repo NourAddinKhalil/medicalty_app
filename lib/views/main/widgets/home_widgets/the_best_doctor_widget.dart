@@ -5,6 +5,7 @@ import 'package:medicalty/helpers/font_sizes.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
 import 'package:medicalty/utiles/custom_sized_box.dart';
 import 'package:medicalty/utiles/images_utiles/circle_image.dart';
+import 'package:medicalty/views/main/widgets/home_widgets/favorite_btn.dart';
 import 'package:medicalty/views/main/widgets/home_widgets/container_shade_widget.dart';
 
 class TheBestDoctorWidget extends StatelessWidget {
@@ -103,8 +104,62 @@ class TheBestDoctorWithFavWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.r),
             ),
           ),
-          Column(),
-          Column(),
+          const HorizantalSizedBox(20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const VerticalSizedBox(10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: FontSizes.h6?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const VerticalSizedBox(6),
+                      Text(
+                        spicialty,
+                        style: FontSizes.h9?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFFC4C4C4),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const HorizantalSizedBox(60),
+                  FavoriteBtn(
+                    isFavorite: isFavorite,
+                    onFavoriteChange: onFavoriteChange,
+                  ),
+                ],
+              ),
+              const VerticalSizedBox(10),
+              RichText(
+                text: TextSpan(
+                  text: rating.toStringAsFixed(1),
+                  style: FontSizes.h6?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: ' ($viewCount views)',
+                      style: FontSizes.h8?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xFFC4C4C4)),
+                    ),
+                  ],
+                ),
+              ),
+              const VerticalSizedBox(5),
+            ],
+          ),
         ],
       ),
     );

@@ -8,9 +8,9 @@ class ContactUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBackground(
+    return const AppBackground(
       showImage: false,
-      child: const SafeArea(
+      child: SafeArea(
         child: Scaffold(
           appBar: ReviewsAppBar(title: "Contact Us"),
         ),

@@ -104,8 +104,7 @@ class BookPatientScreen extends StatelessWidget {
                                   margin: const EdgeInsets.only(right: 8.0),
                                   child: Center(
                                     child: MyText(
-                                        text:
-                                            '${splitTime[index].format(context)}',
+                                        text: splitTime[index].format(context),
                                         color: ColorsConstant.white,
                                         fontSize: 15.sp),
                                   ));
