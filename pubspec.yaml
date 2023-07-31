@@ -1,0 +1,141 @@
+name: medicalty
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cached_network_image: ^3.2.3
+  connectivity_plus: ^4.0.1
+  dropdown_search: ^5.0.6
+  ensure_visible_when_focused: ^1.1.1
+  equatable: ^2.0.5
+  file_picker: ^5.3.2
+  flutter_screenutil: ^5.8.4
+  flutter_typeahead: ^4.6.2
+  font_awesome_flutter: ^10.5.0
+  image_cropper: ^5.0.0
+  image_picker: ^1.0.0
+  internet_connection_checker: ^1.0.0+1
+  intl: ^0.18.0
+  keyboard_utils: ^1.3.4
+  path: ^1.8.3
+  path_provider: ^2.0.15
+  package_info_plus: ^4.0.2
+  shimmer: ^3.0.0
+  url_launcher: ^6.1.12
+  flutter_rounded_date_picker: ^3.0.4
+  flutter_localization: ^0.1.12
+  rename: ^2.1.1
+  upgrader: ^7.1.0
+  get: ^4.6.5
+  flutter_native_image: ^0.0.6+1
+  shared_preferences: ^2.2.0
+  email_validator: ^2.1.17
+  dotted_border: ^2.0.0+3
+  flutter_secure_storage: ^8.0.0
+  device_preview: ^1.1.0
+  flutter_svg: ^2.0.7
+  loader_overlay: ^2.2.0
+  animated_splash_screen: ^1.3.0
+  smooth_page_indicator: ^1.1.0
+  flutter_speed_dial: ^7.0.0
+  carousel_slider: ^4.2.1
+  table_calendar: ^3.0.9
+  calendar_view: ^1.0.3
+  another_stepper: ^1.2.2
+  open_file: ^3.3.2
+  syncfusion_flutter_calendar: ^22.1.37
+  persistent_bottom_nav_bar_v2: ^4.2.8
+  contained_tab_bar_view: ^0.8.0
+  syncfusion_flutter_signaturepad: ^22.1.37
+  currency_textfield: ^4.0.0
+
+  cupertino_icons: ^1.0.2
+  flutter_rating_bar: ^4.0.1
+  flutter_switch: ^0.3.2
+  syncfusion_flutter_datepicker: ^22.2.5
+
+dev_dependencies:
+  build_runner: ^2.4.6
+  flutter_test:
+    sdk: flutter
+  flutter_gen_runner: ^5.3.1
+  flutter_lints: ^2.0.2
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/logos/
+    - assets/svgs/
+    - assets/icons/
+
+  fonts:
+    # - family: Franklin-Gothic
+    #   fonts:
+    #     - asset: assets/fonts/Franklin_Gothic_Medium_Cond_Regular.ttf
+    # - family: Myraid-Pro
+    #   fonts:
+    #     - asset: assets/fonts/myriad_pro/MYRIADPRO-BOLD.OTF.ttf
+    #       weight: 700
+    #     - asset: assets/fonts/myriad_pro/MYRIADPRO-SEMIBOLDIT.OTF.ttf
+    #       weight: 600
+    #     - asset: assets/fonts/myriad_pro/MYRIADPRO-REGULAR.OTF.ttf
+    #       weight: 400
+    #     - asset: assets/fonts/myriad_pro/MyriadPro-Light.otf.ttf
+    #       weight: 300
+  
+  - family: Bebas-Neue
+    fonts:
+      - asset: assets/fonts/bebas_neue/BebasNeue-Regular.ttf
+
+  - family: Switzer-Complete
+    fonts:
+      - asset: assets/fonts/switzer/Switzer-Black.ttf
+        weight: 900
+      - asset: assets/fonts/switzer/Switzer-BlackItalic.ttf
+        weight: 900
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Extrabold.ttf
+        weight: 800
+      - asset: assets/fonts/switzer/Switzer-ExtraboldItalic.ttf
+        weight: 800
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/switzer/Switzer-BoldItalic.ttf
+        weight: 700
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Semibold.ttf
+        weight: 600
+      - asset: assets/fonts/switzer/Switzer-SemiboldItalic.ttf
+        weight: 600
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/switzer/Switzer-MediumItalic.ttf
+        weight: 500
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Regular.ttf
+        weight: 400
+      - asset: assets/fonts/switzer/Switzer-Light.ttf
+        weight: 300
+      - asset: assets/fonts/switzer/Switzer-LightItalic.ttf
+        weight: 300
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Extralight.ttf
+        weight: 200
+      - asset: assets/fonts/switzer/Switzer-ExtralightItalic.ttf
+        weight: 200
+        style: italic
+      - asset: assets/fonts/switzer/Switzer-Thin.ttf
+        weight: 100
+      - asset: assets/fonts/switzer/Switzer-ThinItalic.ttf
+        weight: 100
+        style: italic
