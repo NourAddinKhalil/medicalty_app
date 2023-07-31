@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:medicalty/gen/assets.gen.dart';
+import 'package:medicalty/helpers/convert_to_date_time.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
 import 'package:medicalty/utiles/custom_sized_box.dart';
@@ -14,16 +15,68 @@ class BestDoctorsWidget extends StatelessWidget {
     required this.image,
     required this.name,
     required this.rate,
-    required this.kcal,
-    required this.min,
-    required this.status,
+    this.kcal,
+    this.min,
+    this.status,
+    this.startTime,
+    this.endTime,
+    this.date,
   });
   final String image;
   final String name;
   final double rate;
-  final int kcal;
-  final int min;
-  final String status;
+  final int? kcal;
+  final int? min;
+  final TimeOfDay? startTime;
+  final TimeOfDay? endTime;
+  final String? status;
+  final DateTime? date;
+
+  Widget _buildIcon() {
+    return Icon(
+      Icons.access_time_outlined,
+      color: const Color(0xFF00ADB5),
+      size: 15.sp,
+    );
+  }
+
+  Widget _buildText(String title) {
+    return Text(
+      title,
+      style: FontSizes.h9?.copyWith(
+        fontSize: 11.sp,
+        color: const Color(0xFF3A4750),
+      ),
+    );
+  }
+
+  Widget _buildMedianWidget() {
+    return Row(
+      children: [
+        ImageHelpers.getSVGAssetImage(
+          15,
+          15,
+          pic: Assets.svgs.flame,
+        ),
+        _buildText(' $kcal kcl |  '),
+        _buildIcon(),
+        _buildText(' $min min'),
+      ],
+    );
+  }
+
+  Widget _buildStartEndTimeWidget() {
+    return Row(
+      children: [
+        _buildIcon(),
+        _buildText(
+            ' ${DateTimeHelpers.convertTimeOfDayToString(startTime!, false)}  |  '),
+        _buildIcon(),
+        _buildText(
+            '  ${DateTimeHelpers.convertTimeOfDayToString(endTime!, false)}'),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,37 +117,12 @@ class BestDoctorsWidget extends StatelessWidget {
               },
             ),
             const VerticalSizedBox(6),
-            Row(
-              children: [
-                ImageHelpers.getSVGAssetImage(
-                  15,
-                  15,
-                  pic: Assets.svgs.flame,
-                ),
-                Text(
-                  ' $kcal kcl |  ',
-                  style: FontSizes.h9?.copyWith(
-                    // fontSize: 10.sp,
-                    color: const Color(0xFF3A4750),
-                  ),
-                ),
-                Icon(
-                  Icons.access_time_outlined,
-                  color: const Color(0xFF00ADB5),
-                  size: 15.sp,
-                ),
-                Text(
-                  ' $min min',
-                  style: FontSizes.h9?.copyWith(
-                    // fontSize: 10.sp,
-                    color: const Color(0xFF3A4750),
-                  ),
-                ),
-              ],
-            ),
+            if (kcal != null && min != null) _buildMedianWidget(),
+            if (startTime != null && endTime != null)
+              _buildStartEndTimeWidget(),
             const VerticalSizedBox(6),
             Text(
-              status,
+              status ?? DateTimeHelpers.convertDateToString(date!),
               style: FontSizes.h9?.copyWith(
                   // fontSize: 10.sp,
                   ),

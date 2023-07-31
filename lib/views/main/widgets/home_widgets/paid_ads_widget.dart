@@ -11,14 +11,18 @@ class PaidAdsWidget extends StatelessWidget {
   const PaidAdsWidget({
     super.key,
     required this.name,
-    required this.hourlyPaid,
+    this.hourlyPaid,
     required this.rating,
     required this.image,
     required this.isFavorite,
     required this.onFavoriteChange,
+    this.subtitle,
+    this.subtitleColor,
   });
   final String name;
-  final double hourlyPaid;
+  final double? hourlyPaid;
+  final String? subtitle;
+  final Color? subtitleColor;
   final double rating;
   final String image;
   final bool isFavorite;
@@ -60,23 +64,32 @@ class PaidAdsWidget extends StatelessWidget {
               ),
             ),
             const VerticalSizedBox(4),
-            RichText(
-              text: TextSpan(
-                text: '\$',
+            if (hourlyPaid != null)
+              RichText(
+                text: TextSpan(
+                  text: '\$',
+                  style: FontSizes.h9?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: ColorsConstant.green1,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: '${hourlyPaid?.toStringAsFixed(2)}/hour',
+                      style: FontSizes.h9?.copyWith(
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            if (subtitle != null)
+              Text(
+                subtitle!,
                 style: FontSizes.h9?.copyWith(
                   fontWeight: FontWeight.w400,
-                  color: ColorsConstant.green1,
+                  color: subtitleColor,
                 ),
-                children: [
-                  TextSpan(
-                    text: '${hourlyPaid.toStringAsFixed(2)}/hour',
-                    style: FontSizes.h9?.copyWith(
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+              )
           ],
         ),
       ),
