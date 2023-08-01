@@ -67,8 +67,8 @@ class DoctorInfoWithBook extends StatelessWidget {
                             itemCount: 5,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return const Icon(Icons.star,
-                                  color: ColorsConstant.yellow);
+                              return Icon(Icons.star,
+                                  size: 10.sp, color: ColorsConstant.yellow);
                             }),
                       ),
                     ],

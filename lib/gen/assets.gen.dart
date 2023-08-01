@@ -135,6 +135,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/vacations.svg
   String get vacations => 'assets/icons/vacations.svg';
 
+  /// File path: assets/icons/examination.svg
+  String get examination => 'assets/icons/examination.svg';
+
+  /// File path: assets/icons/mr_doctor.svg
+  String get mr_doctor => 'assets/icons/mr_doctor.svg';
+
   /// List of all assets
   List<String> get values => [
         takeVideo,
@@ -177,7 +183,9 @@ class $AssetsIconsGen {
         thirdIconActive,
         thirdIconNon,
         updateAltsvg,
-        vacations
+        vacations,
+        examination,
+        mr_doctor
       ];
 }
 
@@ -350,8 +358,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/women2.png
   AssetGenImage get women2 => const AssetGenImage('assets/images/women2.png');
 
+  /// File path: assets/images/bill.png
+  AssetGenImage get bill => const AssetGenImage('assets/images/bill.png');
+
+  /// File path: assets/images/report.png
+  AssetGenImage get report1 => const AssetGenImage('assets/images/report.png');
+
   /// List of all assets
-  List<dynamic> get values => [
+  List<AssetGenImage> get values => [
         homepageBack,
         hospital,
         medicalCenter,
@@ -362,14 +376,11 @@ class $AssetsImagesGen {
         physiotherapy,
         ads,
         amb,
-        bellIcon,
         blackAvatar,
         blueBack,
         callButton,
-        calories,
         camera,
         categorypng,
-        clock,
         docFamale,
         docHat,
         docHead,
@@ -377,10 +388,7 @@ class $AssetsImagesGen {
         doctor2,
         doctorImg,
         formBack,
-        heartIcon,
         invoice,
-        languageIcon,
-        lock,
         nurse,
         onPording1Back,
         patient1,
@@ -393,13 +401,14 @@ class $AssetsImagesGen {
         pharmacy,
         report,
         seeDoctor,
-        sleepIcon,
         socialWorker,
         surge,
         therapy,
         woman1,
         woman3,
-        women2
+        women2,
+        bill,
+        report1
       ];
 }
 
