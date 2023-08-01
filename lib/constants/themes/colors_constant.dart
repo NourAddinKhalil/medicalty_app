@@ -49,6 +49,10 @@ class ColorsConstant {
     Color(0xffF1AD47),
     Color(0xffFEC662),
   ]);
+  static const orangeGradient2 = LinearGradient(colors: [
+    Color(0xFFF6A010),
+    Color(0xFFD48103),
+  ]);
   static const purpleGradient = LinearGradient(colors: [
     Color(0xff6665AE),
     Color(0xff6665AE),

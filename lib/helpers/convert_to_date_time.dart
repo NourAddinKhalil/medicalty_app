@@ -106,8 +106,13 @@ class DateTimeHelpers {
     );
   }
 
-  static String convertTimeOfDayToString(TimeOfDay time) {
-    return '${time.hour}:${time.minute}';
+  static String convertTimeOfDayToString(TimeOfDay time, [bool is24 = true]) {
+    final date = DateTime(1999, 1, 1, time.hour, time.minute);
+    if (is24) {
+      // return DateFormat.yMd().add_Hm().format(dateTime);
+      return DateFormat('HH:mm').format(date);
+    }
+    return DateFormat('hh:mm a').format(date);
   }
 
   static String returnTimeMode(String time) {

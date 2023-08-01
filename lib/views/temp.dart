@@ -22,7 +22,6 @@ import 'package:medicalty/views/employee/screens/new_employee_screen.dart';
 import 'package:medicalty/views/expense/screens/expnese_details_screen.dart';
 import 'package:medicalty/views/expense/screens/new_expense_screen.dart';
 import 'package:medicalty/views/experience/screens/new_experience_screen.dart';
-import 'package:medicalty/views/home/screen/home_screen.dart';
 import 'package:medicalty/views/insurance_company/screens/new_insurance_company_screen.dart';
 import 'package:medicalty/views/invoice/screens/new_invoice_screen.dart';
 import 'package:medicalty/views/lab/screens/new_laboratory_screen.dart';
@@ -51,7 +50,7 @@ import 'package:medicalty/views/settings/screen/settings_screen.dart';
 import 'package:medicalty/views/support/screens/support_screen.dart';
 import 'package:medicalty/views/units_of_measure/screen/units_of_measure_screen.dart';
 import 'package:medicalty/views/welcom/screens/user_types_screen.dart';
-import 'package:medicalty/views/review/screen/write_a_review_screen.dart';
+import 'package:medicalty/views/write_a_review/screen/write_a_review_screen.dart';
 
 import 'doctor_detailes/screen/doctor_detail_screen.dart';
 
@@ -125,12 +124,6 @@ class Temp extends StatelessWidget {
               },
             ),
             CustomTextButton(
-              title: 'HomeScreen',
-              onPressed: () {
-                Get.to(() => const HomeScreen());
-              },
-            ),
-            CustomTextButton(
               title: 'EditProfileScreen',
               onPressed: () {
                 Get.to(() => const EditProfileScreen());
@@ -175,7 +168,7 @@ class Temp extends StatelessWidget {
             CustomTextButton(
               title: 'ProfileScreen',
               onPressed: () {
-                Get.to(() => yam.ProfileScreen());
+                Get.to(() => const yam.ProfileScreen());
               },
             ),
             CustomTextButton(
