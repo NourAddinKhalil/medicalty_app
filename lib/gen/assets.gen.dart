@@ -48,9 +48,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/doc_hat.svg
   String get docHat => 'assets/icons/doc_hat.svg';
 
-  /// File path: assets/icons/examination.svg
-  String get examination => 'assets/icons/examination.svg';
-
   /// File path: assets/icons/expenses.svg
   String get expenses => 'assets/icons/expenses.svg';
 
@@ -92,9 +89,6 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/logout_red.svg
   String get logoutRed => 'assets/icons/logout_red.svg';
-
-  /// File path: assets/icons/mr_doctor.svg
-  String get mrDoctor => 'assets/icons/mr_doctor.svg';
 
   /// File path: assets/icons/patient_lay.svg
   String get patientLay => 'assets/icons/patient_lay.svg';
@@ -141,6 +135,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/vacations.svg
   String get vacations => 'assets/icons/vacations.svg';
 
+  /// File path: assets/icons/examination.svg
+  String get examination => 'assets/icons/examination.svg';
+
+  /// File path: assets/icons/mr_doctor.svg
+  String get mr_doctor => 'assets/icons/mr_doctor.svg';
+
   /// List of all assets
   List<String> get values => [
         takeVideo,
@@ -155,7 +155,6 @@ class $AssetsIconsGen {
         departure,
         details,
         docHat,
-        examination,
         expenses,
         facebookLogo,
         fifthIconActive,
@@ -170,7 +169,6 @@ class $AssetsIconsGen {
         invoice,
         link,
         logoutRed,
-        mrDoctor,
         patientLay,
         profile,
         ringNotification,
@@ -185,7 +183,9 @@ class $AssetsIconsGen {
         thirdIconActive,
         thirdIconNon,
         updateAltsvg,
-        vacations
+        vacations,
+        examination,
+        mr_doctor
       ];
 }
 
@@ -229,8 +229,8 @@ class $AssetsImagesGen {
   /// File path: assets/images/amb.png
   AssetGenImage get amb => const AssetGenImage('assets/images/amb.png');
 
-  /// File path: assets/images/bill.png
-  AssetGenImage get bill => const AssetGenImage('assets/images/bill.png');
+  /// File path: assets/images/bell-icon.svg
+  String get bellIcon => 'assets/images/bell-icon.svg';
 
   /// File path: assets/images/black_avatar.png
   AssetGenImage get blackAvatar =>
@@ -244,12 +244,18 @@ class $AssetsImagesGen {
   AssetGenImage get callButton =>
       const AssetGenImage('assets/images/call_button.png');
 
+  /// File path: assets/images/calories.svg
+  String get calories => 'assets/images/calories.svg';
+
   /// File path: assets/images/camera.png
   AssetGenImage get camera => const AssetGenImage('assets/images/camera.png');
 
   /// File path: assets/images/categorypng.png
   AssetGenImage get categorypng =>
       const AssetGenImage('assets/images/categorypng.png');
+
+  /// File path: assets/images/clock.svg
+  String get clock => 'assets/images/clock.svg';
 
   /// File path: assets/images/doc_famale.png
   AssetGenImage get docFamale =>
@@ -276,8 +282,17 @@ class $AssetsImagesGen {
   AssetGenImage get formBack =>
       const AssetGenImage('assets/images/form back.png');
 
+  /// File path: assets/images/heart-icon.svg
+  String get heartIcon => 'assets/images/heart-icon.svg';
+
   /// File path: assets/images/invoice.png
   AssetGenImage get invoice => const AssetGenImage('assets/images/invoice.png');
+
+  /// File path: assets/images/language-icon.svg
+  String get languageIcon => 'assets/images/language-icon.svg';
+
+  /// File path: assets/images/lock.svg
+  String get lock => 'assets/images/lock.svg';
 
   /// File path: assets/images/nurse.png
   AssetGenImage get nurse => const AssetGenImage('assets/images/nurse.png');
@@ -314,12 +329,15 @@ class $AssetsImagesGen {
   AssetGenImage get pharmacy =>
       const AssetGenImage('assets/images/pharmacy.png');
 
-  /// File path: assets/images/report1.png
-  AssetGenImage get report1 => const AssetGenImage('assets/images/report1.png');
+  /// File path: assets/images/report.png
+  AssetGenImage get report => const AssetGenImage('assets/images/report.png');
 
   /// File path: assets/images/see_doctor.png
   AssetGenImage get seeDoctor =>
       const AssetGenImage('assets/images/see_doctor.png');
+
+  /// File path: assets/images/sleep-icon.svg
+  String get sleepIcon => 'assets/images/sleep-icon.svg';
 
   /// File path: assets/images/social_worker.png
   AssetGenImage get socialWorker =>
@@ -340,6 +358,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/women2.png
   AssetGenImage get women2 => const AssetGenImage('assets/images/women2.png');
 
+  /// File path: assets/images/bill.png
+  AssetGenImage get bill => const AssetGenImage('assets/images/bill.png');
+
+  /// File path: assets/images/report.png
+  AssetGenImage get report1 => const AssetGenImage('assets/images/report.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         homepageBack,
@@ -352,7 +376,6 @@ class $AssetsImagesGen {
         physiotherapy,
         ads,
         amb,
-        bill,
         blackAvatar,
         blueBack,
         callButton,
@@ -376,14 +399,16 @@ class $AssetsImagesGen {
         person3,
         person4,
         pharmacy,
-        report1,
+        report,
         seeDoctor,
         socialWorker,
         surge,
         therapy,
         woman1,
         woman3,
-        women2
+        women2,
+        bill,
+        report1
       ];
 }
 
