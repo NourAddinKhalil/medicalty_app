@@ -39,6 +39,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/create.svg
   String get create => 'assets/icons/create.svg';
 
+  /// File path: assets/icons/delete.svg
+  String get delete => 'assets/icons/delete.svg';
+
   /// File path: assets/icons/departure.svg
   String get departure => 'assets/icons/departure.svg';
 
@@ -146,6 +149,7 @@ class $AssetsIconsGen {
         chooseDocument,
         choosePhotoVideo,
         create,
+        delete,
         departure,
         details,
         docHat,
