@@ -10,7 +10,6 @@ import 'package:medicalty/constants/themes/light_theme.dart';
 import 'package:medicalty/controllers/screen_controllers/theme_controller.dart';
 import 'package:medicalty/routes/app_router.dart';
 import 'package:medicalty/utiles/custom_loading.dart';
-import 'constants/app/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
