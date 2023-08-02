@@ -1,37 +1,61 @@
-import 'package:get/get.dart';
-
-import '../../views/contact_us_setting/screen/contact_us_setting_screen.dart';
-import '../../views/language_setting/screen/language_setting_screen.dart';
-import '../../views/notification_setting/screen/notification_setting_screen.dart';
-import '../../views/privacy_policy/screen/privacy_policy_screen.dart';
-import '../../views/units_of_measure/screen/units_of_measure_screen.dart';
-
-class AppRoutes {
-  static final routes = [
-    GetPage(
-      name: Routes.unitsOfMeasureScreen,
-      page: () => UnitsOfMeasureScreen(),
-    ),
-    GetPage(
-      name: Routes.notificationsSettingsScreen,
-      page: () => NotificationsSettingsScreen(),
-    ),
-    GetPage(
-      name: Routes.languageScreen,
-      page: () => const LanguageScreen(),
-    ),
-    GetPage(
-      name: Routes.contactUsScreen,
-      page: () => const ContactUsScreen(),
-    ),
-    GetPage(
-      name: Routes.privacyPolicyScreen,
-      page: () => const PrivacyPolicyScreen(),
-    ),
-  ];
-}
-
 class Routes {
+  static const tempScreen = '/temp';
+  static const onBorardingScreen = '/onBorardingScreen';
+  static const aboutScreen = '/aboutScreen';
+  static const appointmentBookingScreen = '/appointmentBookingScreen';
+  static const showAppointmentBookingScreen = '/showAppointmentBookingScreen';
+  static const newAttachmentScreen = '/newAttachmentScreen';
+  static const createAccountScreen = '/createAccountScreen';
+  static const loginScreen = '/loginScreen';
+  static const forgetPasswordScreen = '/forgetPasswordScreen';
+  static const verifyAccountScreen = '/verifyAccountScreen';
+  static const newCenterScreen = '/newCenterScreen';
+  static const showCenterScreen = '/showCenterScreen';
+  static const newClientScreen = '/newClientScreen';
+  static const showClientScreen = '/showClientScreen';
+  static const newDiseaseScreen = '/newDiseaseScreen';
+  static const showDiseaseScreen = '/showDiseaseScreen';
+  static const newDoctorScreen = '/newDoctorScreen';
+  static const showDoctorScreen = '/showDoctorScreen';
+  static const newEmployeeScreen = '/newEmployeeScreen';
+  static const showEmployeeScreen = '/showEmployeeScreen';
+  static const newExpenseScreen = '/newExpenseScreen';
+  static const showExpenseScreen = '/showExpenseScreen';
+  static const expenseDetailsScreen = '/expenseDetailsScreen';
+  static const newExperienceScreen = '/newExperienceScreen';
+  static const showExperienceScreen = '/showExperienceScreen';
+  static const newInsuranceCompanyScreen = '/newInsuranceCompanyScreen';
+  static const showInsuranceCompanyScreen = '/showInsuranceCompanyScreen';
+  static const newInvoiceScreen = '/newInvoiceScreen';
+  static const payAmountScreen = '/payAmountScreen';
+  static const newLabScreen = '/newLabScreen';
+  static const showLabScreen = '/showLabScreen';
+  static const mainScreen = '/mainScreen';
+  static const homeScreen = '/homeScreen';
+  static const hospitalCenterHomeScreen = '/hospitalCenterHomeScreen';
+  static const pharmacyHomeScreen = '/pharmacyHomeScreen';
+  static const physicianDoctorHomeScreen = '/physicianDoctorHomeScreen';
+  static const searchScreen = '/searchScreen';
+  static const messageScreen = '/messageScreen';
+  static const newNoteScreen = '/newNoteScreen';
+  static const notificationScreen = '/notificationScreen';
+  static const newPathologicalScoutScreen = '/newPathologicalScoutScreen';
+  static const newPatientScreen = '/newPatientScreen';
+  static const showPatientScreen = '/showPatientScreen';
+  static const newPharmacyScreen = '/newPharmacyScreen';
+  static const showPharmacyScreen = '/showPharmacyScreen';
+  static const newPharmacyProductScreen = '/newPharmacyProductScreen';
+  static const showPharmacyProductScreen = '/showPharmacyProductScreen';
+  static const newProductScreen = '/newProductScreen';
+  static const showProductScreen = '/showProductScreen';
+  static const profileScreen = '/profileScreen';
+  static const purchasePlanScreen = '/purchasePlanScreen';
+  static const newRequestScreen = '/newRequestScreen';
+  static const showRequestScreen = '/showRequestScreen';
+  static const newDepartmentScreen = '/newDepartmentScreen';
+  static const showDepartmentScreen = '/showDepartmentScreen';
+  static const supportScreen = '/supportScreen';
+  static const userTypesScreen = '/userTypesScreen';
   static const unitsOfMeasureScreen = '/unitsOfMeasureScreen';
   static const notificationsSettingsScreen = '/notificationsSettingsScreen';
   static const languageScreen = '/languageScreen';

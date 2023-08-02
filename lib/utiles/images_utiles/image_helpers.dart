@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:medicalty/constants/apis/api_constants.dart';
+import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/helpers/utiles.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
 
@@ -143,11 +144,14 @@ class ImageHelpers {
     double width,
     double height,
   ) {
-    return Image.asset(
-      'no image',
-      fit: BoxFit.cover,
-      width: width.w,
-      height: height.h,
+    return getSVGAssetImage(
+      width,
+      height,
+      pic: Assets.svgs.profileImg,
+      boxFit: BoxFit.cover,
+      // fit: BoxFit.cover,
+      // width: width.w,
+      // height: height.h,
     );
   }
 
