@@ -25,8 +25,8 @@ class LinearGradientContainer extends StatelessWidget {
               tileMode: TileMode.clamp,
               end: Alignment.bottomLeft,
               colors: [
-                ColorsConstant.blackBlue.withOpacity(.8),
-                ColorsConstant.blackBlue.withOpacity(.1)
+                ColorsConstant.blackBlue.withOpacity(.4),
+                ColorsConstant.white
               ])),
     );
   }
