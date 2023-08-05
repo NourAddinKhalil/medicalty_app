@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:medicalty/constants/app/routes.dart';
 import 'package:medicalty/gen/assets.gen.dart';
 import 'package:medicalty/gen/fonts.gen.dart';
 import 'package:medicalty/helpers/font_sizes.dart';
@@ -8,7 +9,6 @@ import 'package:medicalty/utiles/buttons_utiles/custom_elevated_button.dart';
 import 'package:medicalty/utiles/custom_edge_insets.dart';
 import 'package:medicalty/utiles/custom_sized_box.dart';
 import 'package:medicalty/utiles/images_utiles/image_helpers.dart';
-import 'package:medicalty/views/auth/screens/create_account_screen.dart';
 
 class Onboarding4 extends StatelessWidget {
   const Onboarding4({super.key});
@@ -80,10 +80,8 @@ class Onboarding4 extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.offUntil(
-                      GetPageRoute(
-                        page: () => const CreateAccountScreen(),
-                      ),
+                    Get.offNamedUntil(
+                      Routes.userTypesScreen,
                       (route) => false,
                     );
                   },

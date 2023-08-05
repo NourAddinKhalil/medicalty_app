@@ -8,6 +8,7 @@ import 'package:medicalty/bindings/main_binding.dart';
 import 'package:medicalty/constants/themes/dark_theme.dart';
 import 'package:medicalty/constants/themes/light_theme.dart';
 import 'package:medicalty/controllers/screen_controllers/theme_controller.dart';
+import 'package:medicalty/routes/app_router.dart';
 import 'package:medicalty/utiles/custom_loading.dart';
 import 'package:medicalty/views/all_screens/screens/all_favorite_doctors_screen.dart';
 import 'package:medicalty/views/appointment/screens/appointment_screen.dart';
@@ -58,13 +59,17 @@ class App extends StatelessWidget {
             // locale: DevicePreview.locale(context),
             // builder: DevicePreview.appBuilder,
             title: 'Medicalty',
-            getPages: AppRoutes.routes,
+            getPages: AppRouter.routes,
             debugShowCheckedModeBanner: false,
             themeMode: theme.themeMode,
             theme: LightTheme.lightTheme,
             darkTheme: DarkTheme.darkTheme,
             initialBinding: MainBinding(),
-            home: const AllFavoriteDoctorsScreen(),
+
+            
+
+            initialRoute: AppRouter.initialRoute,
+
           ),
         );
       },

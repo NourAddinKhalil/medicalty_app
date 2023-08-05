@@ -59,6 +59,7 @@ class CircleSqureImage extends StatelessWidget {
                 width,
                 height,
                 id,
+                loadAssestImage: true,
               )
             : isSvg
                 ? ImageHelpers.getSVGAssetImage(
@@ -73,16 +74,19 @@ class CircleSqureImage extends StatelessWidget {
                         height,
                         pic: pic,
                         boxFit: fit,
+                        loadAssestImage: true,
                       )
                     : ImageHelpers.getFileImage(
                         pic,
                         width,
                         height,
+                        loadAssestImage: true,
                       )
         : ImageHelpers.getAssetImage(
             width,
             height,
             boxFit: fit,
+            loadAssestImage: true,
           );
   }
 

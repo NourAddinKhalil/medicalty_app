@@ -100,9 +100,13 @@ class Validators {
     }
   }
 
-  static String? validateTimeFormat(String? value) {
+  static String? validateTimeFormat(String? value,
+      [bool showStringAsEmpty = false]) {
     var empty = checkIfNotEmpty(value);
     if (empty != null) {
+      if (showStringAsEmpty) {
+        return '';
+      }
       return empty;
     }
     try {
@@ -110,6 +114,9 @@ class Validators {
 
       return null;
     } catch (_) {
+      if (showStringAsEmpty) {
+        return '';
+      }
       return 'Enter a valid Time!';
     }
   }

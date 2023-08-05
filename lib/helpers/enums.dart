@@ -61,6 +61,16 @@ enum WorkingTimesEnum {
 //end employee
 
 ///
+enum WeekDayEnum {
+  saturday,
+  sunday,
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+}
+
 enum PaymentTypeEnum {
   net10,
   net20,
