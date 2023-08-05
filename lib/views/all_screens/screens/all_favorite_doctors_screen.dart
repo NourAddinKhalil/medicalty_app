@@ -7,8 +7,8 @@ import '../../../utiles/my_text.dart';
 import '../../patient/widget/linear_gradient_widget.dart';
 import '../widgets/all_favorite_doctors_card_widget.dart';
 
-class AllFvoriteDoctorsScreen extends StatelessWidget {
-  const AllFvoriteDoctorsScreen({super.key});
+class AllFavoriteDoctorsScreen extends StatelessWidget {
+  const AllFavoriteDoctorsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

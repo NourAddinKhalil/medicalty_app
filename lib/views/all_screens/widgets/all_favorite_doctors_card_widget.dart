@@ -73,7 +73,7 @@ class AllFvoriteDoctorsCardWidget extends StatelessWidget {
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w400),
                         MyText(
-                            text: "78%      75 Patient Booking",
+                            text: "78%    75 Patient Booking",
                             color: ColorsConstant.grey,
                             fontSize: 10.sp,
                             fontWeight: FontWeight.w400),
@@ -94,11 +94,11 @@ class AllFvoriteDoctorsCardWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10)),
                           child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(6.0),
                               child: MyText(
                                   text: "Book now",
                                   color: ColorsConstant.white,
-                                  fontSize: 15.sp),
+                                  fontSize: 14.sp),
                             ),
                           ),
                         )
