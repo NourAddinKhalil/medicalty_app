@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+
+import 'package:medicalty/helpers/convert_to_date_time.dart';
 
 class EmployeeModel extends Equatable {
   final int id;
@@ -23,6 +26,20 @@ class EmployeeModel extends Equatable {
   final String? zipCode;
   final String gender;
   final String nationality;
+  final TimeOfDay? sundayStartTime;
+  final TimeOfDay? sundayEndTime;
+  final TimeOfDay? mondayStartTime;
+  final TimeOfDay? mondayEndTime;
+  final TimeOfDay? tuesdayStartTime;
+  final TimeOfDay? tuesdayEndTime;
+  final TimeOfDay? wednesdayStartTime;
+  final TimeOfDay? wednesdayEndTime;
+  final TimeOfDay? thursdayStartTime;
+  final TimeOfDay? thursdayEndTime;
+  final TimeOfDay? fridayStartTime;
+  final TimeOfDay? fridayEndTime;
+  final TimeOfDay? saturdayStartTime;
+  final TimeOfDay? saturdayEndTime;
 
   static EmployeeModel get defaultModel {
     return EmployeeModel(
@@ -65,6 +82,20 @@ class EmployeeModel extends Equatable {
     this.zipCode,
     required this.gender,
     required this.nationality,
+    this.sundayStartTime,
+    this.sundayEndTime,
+    this.mondayStartTime,
+    this.mondayEndTime,
+    this.tuesdayStartTime,
+    this.tuesdayEndTime,
+    this.wednesdayStartTime,
+    this.wednesdayEndTime,
+    this.thursdayStartTime,
+    this.thursdayEndTime,
+    this.fridayStartTime,
+    this.fridayEndTime,
+    this.saturdayStartTime,
+    this.saturdayEndTime,
   });
 
   EmployeeModel copyWith({
@@ -88,6 +119,20 @@ class EmployeeModel extends Equatable {
     String? zipCode,
     String? gender,
     String? nationality,
+    TimeOfDay? sundayStartTime,
+    TimeOfDay? sundayEndTime,
+    TimeOfDay? mondayStartTime,
+    TimeOfDay? mondayEndTime,
+    TimeOfDay? tuesdayStartTime,
+    TimeOfDay? tuesdayEndTime,
+    TimeOfDay? wednesdayStartTime,
+    TimeOfDay? wednesdayEndTime,
+    TimeOfDay? thursdayStartTime,
+    TimeOfDay? thursdayEndTime,
+    TimeOfDay? fridayStartTime,
+    TimeOfDay? fridayEndTime,
+    TimeOfDay? saturdayStartTime,
+    TimeOfDay? saturdayEndTime,
   }) {
     return EmployeeModel(
       id: id ?? this.id,
@@ -110,6 +155,20 @@ class EmployeeModel extends Equatable {
       zipCode: zipCode ?? this.zipCode,
       gender: gender ?? this.gender,
       nationality: nationality ?? this.nationality,
+      sundayStartTime: sundayStartTime ?? this.sundayStartTime,
+      sundayEndTime: sundayEndTime ?? this.sundayEndTime,
+      mondayStartTime: mondayStartTime ?? this.mondayStartTime,
+      mondayEndTime: mondayEndTime ?? this.mondayEndTime,
+      tuesdayStartTime: tuesdayStartTime ?? this.tuesdayStartTime,
+      tuesdayEndTime: tuesdayEndTime ?? this.tuesdayEndTime,
+      wednesdayStartTime: wednesdayStartTime ?? this.wednesdayStartTime,
+      wednesdayEndTime: wednesdayEndTime ?? this.wednesdayEndTime,
+      thursdayStartTime: thursdayStartTime ?? this.thursdayStartTime,
+      thursdayEndTime: thursdayEndTime ?? this.thursdayEndTime,
+      fridayStartTime: fridayStartTime ?? this.fridayStartTime,
+      fridayEndTime: fridayEndTime ?? this.fridayEndTime,
+      saturdayStartTime: saturdayStartTime ?? this.saturdayStartTime,
+      saturdayEndTime: saturdayEndTime ?? this.saturdayEndTime,
     );
   }
 
@@ -135,6 +194,59 @@ class EmployeeModel extends Equatable {
       'zip_code': zipCode,
       'gender': gender,
       'nationality': nationality,
+      'Sunday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(sundayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(sundayStartTime!),
+      'Sunday_end_time': DateTimeHelpers.isTimeNullOrDefaultValue(sundayEndTime)
+          ? null
+          : DateTimeHelpers.convertTimeOfDayToString(sundayEndTime!),
+      'Monday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(mondayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(mondayStartTime!),
+      'Monday_end_time': DateTimeHelpers.isTimeNullOrDefaultValue(mondayEndTime)
+          ? null
+          : DateTimeHelpers.convertTimeOfDayToString(mondayEndTime!),
+      'Tuesday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(tuesdayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(tuesdayStartTime!),
+      'Tuesday_end_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(tuesdayEndTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(tuesdayEndTime!),
+      'Wednesday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(wednesdayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(wednesdayStartTime!),
+      'Wednesday_end_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(wednesdayEndTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(wednesdayEndTime!),
+      'Thursday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(thursdayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(thursdayStartTime!),
+      'Thursday_end_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(thursdayEndTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(thursdayEndTime!),
+      'Friday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(fridayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(fridayStartTime!),
+      'Friday_end_time': DateTimeHelpers.isTimeNullOrDefaultValue(fridayEndTime)
+          ? null
+          : DateTimeHelpers.convertTimeOfDayToString(fridayEndTime!),
+      'Saturday_start_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(saturdayStartTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(saturdayStartTime!),
+      'Saturday_end_time':
+          DateTimeHelpers.isTimeNullOrDefaultValue(saturdayEndTime)
+              ? null
+              : DateTimeHelpers.convertTimeOfDayToString(saturdayEndTime!),
     };
   }
 
@@ -160,6 +272,48 @@ class EmployeeModel extends Equatable {
       zipCode: map['zip_code'],
       gender: map['gender'] ?? '',
       nationality: map['nationality'] ?? '',
+      sundayStartTime: map['Sunday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Sunday_start_time']),
+      sundayEndTime: map['Sunday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Sunday_end_time']),
+      mondayStartTime: map['Monday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Monday_start_time']),
+      mondayEndTime: map['Monday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Monday_end_time']),
+      tuesdayStartTime: map['Tuesday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Tuesday_start_time']),
+      tuesdayEndTime: map['Tuesday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Tuesday_end_time']),
+      wednesdayStartTime: map['Wednesday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Wednesday_start_time']),
+      wednesdayEndTime: map['Wednesday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Wednesday_end_time']),
+      thursdayStartTime: map['Thursday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Thursday_start_time']),
+      thursdayEndTime: map['Thursday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Thursday_end_time']),
+      fridayStartTime: map['Friday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Friday_start_time']),
+      fridayEndTime: map['Friday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Friday_end_time']),
+      saturdayStartTime: map['Saturday_start_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Saturday_start_time']),
+      saturdayEndTime: map['Saturday_end_time'] == null
+          ? const TimeOfDay(hour: 12, minute: 12)
+          : DateTimeHelpers.convertToTimeOfDayV2(map['Saturday_end_time']),
     );
   }
 
@@ -167,11 +321,6 @@ class EmployeeModel extends Equatable {
 
   factory EmployeeModel.fromJson(String source) =>
       EmployeeModel.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'EmployeeModel(id: $id, name: $name, email: $email, phone: $phone, ssn: $ssn, username: $username, image: $image, salaryPerHour: $salaryPerHour, totalSalary: $totalSalary, birthDate: $birthDate, departmentId: $departmentId, schedule: $schedule, workingTime: $workingTime, address: $address, country: $country, province: $province, city: $city, zipCode: $zipCode, gender: $gender, nationality: $nationality)';
-  }
 
   @override
   List<Object?> get props {
@@ -196,6 +345,25 @@ class EmployeeModel extends Equatable {
       zipCode,
       gender,
       nationality,
+      sundayStartTime,
+      sundayEndTime,
+      mondayStartTime,
+      mondayEndTime,
+      tuesdayStartTime,
+      tuesdayEndTime,
+      wednesdayStartTime,
+      wednesdayEndTime,
+      thursdayStartTime,
+      thursdayEndTime,
+      fridayStartTime,
+      fridayEndTime,
+      saturdayStartTime,
+      saturdayEndTime,
     ];
+  }
+
+  @override
+  String toString() {
+    return 'EmployeeModel(id: $id, name: $name, email: $email, phone: $phone, ssn: $ssn, username: $username, image: $image, salaryPerHour: $salaryPerHour, totalSalary: $totalSalary, birthDate: $birthDate, departmentId: $departmentId, schedule: $schedule, workingTime: $workingTime, address: $address, country: $country, province: $province, city: $city, zipCode: $zipCode, gender: $gender, nationality: $nationality, sundayStartTime: $sundayStartTime, sundayEndTime: $sundayEndTime, mondayStartTime: $mondayStartTime, mondayEndTime: $mondayEndTime, tuesdayStartTime: $tuesdayStartTime, tuesdayEndTime: $tuesdayEndTime, wednesdayStartTime: $wednesdayStartTime, wednesdayEndTime: $wednesdayEndTime, thursdayStartTime: $thursdayStartTime, thursdayEndTime: $thursdayEndTime, fridayStartTime: $fridayStartTime, fridayEndTime: $fridayEndTime, saturdayStartTime: $saturdayStartTime, saturdayEndTime: $saturdayEndTime)';
   }
 }

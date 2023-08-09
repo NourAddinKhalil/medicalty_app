@@ -38,6 +38,19 @@ class DateTimeHelpers {
     );
   }
 
+  static bool isTimeNullOrDefaultValue(TimeOfDay? time) {
+    return time == null ||
+        time ==
+            const TimeOfDay(
+              hour: 12,
+              minute: 12,
+            );
+  }
+
+  static bool isDateNullOrDefaultValue(DateTime? date) {
+    return date == null || date == DateTime(1999);
+  }
+
   //returns the date to full date time with second and minute
   static DateTime convertToDateTime(DateTime date, TimeOfDay time) {
     return DateTime(
