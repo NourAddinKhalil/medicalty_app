@@ -12,6 +12,7 @@ class DoctorController extends MasterController {
     final res = await _repo.getSingle(id);
 
     return res;
+    
   }
 
   @override
