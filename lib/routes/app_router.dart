@@ -1,6 +1,15 @@
 import 'package:get/get.dart';
 import 'package:medicalty/constants/app/routes.dart';
 import 'package:medicalty/views/about/screens/about_screen.dart';
+import 'package:medicalty/views/all_screens/screens/all_best_doctors_screen.dart';
+import 'package:medicalty/views/all_screens/screens/all_favorite_doctors_screen.dart';
+import 'package:medicalty/views/all_screens/screens/all_natural_therapy_screen.dart';
+import 'package:medicalty/views/all_screens/screens/all_nurtation_doctors_screen.dart';
+import 'package:medicalty/views/all_screens/screens/all_popular_doctors_screen.dart';
+import 'package:medicalty/views/all_screens/screens/all_social_worker_screen.dart';
+import 'package:medicalty/views/all_screens/screens/my_bills_screen.dart';
+import 'package:medicalty/views/all_screens/screens/my_booking_screen.dart';
+import 'package:medicalty/views/all_screens/screens/my_reports_screen.dart';
 import 'package:medicalty/views/appointment/screens/appointment_booking_screen.dart';
 import 'package:medicalty/views/appointment/screens/show_appointment_screen.dart';
 import 'package:medicalty/views/attatchment/screens/new_attachment_screen.dart';
@@ -69,6 +78,42 @@ class AppRouter {
     GetPage(
       name: Routes.tempScreen,
       page: () => const Temp(),
+    ),
+    GetPage(
+      name: '/AllBestDoctorsScreen',
+      page: () => const AllBestDoctorsScreen(),
+    ),
+    GetPage(
+      name: '/AllFvoriteDoctorsScreen',
+      page: () => const AllFvoriteDoctorsScreen(),
+    ),
+    GetPage(
+      name: '/AllNaturalTherapyScreen',
+      page: () => const AllNaturalTherapyScreen(),
+    ),
+    GetPage(
+      name: '/AllNurtationDoctorsScreen',
+      page: () => const AllNurtationDoctorsScreen(),
+    ),
+    GetPage(
+      name: '/AllPopularDoctorsScreen',
+      page: () => const AllPopularDoctorsScreen(),
+    ),
+    GetPage(
+      name: '/AllSocialWorkerScreen',
+      page: () => const AllSocialWorkerScreen(),
+    ),
+    GetPage(
+      name: '/MyBillsScreen',
+      page: () => const MyBillsScreen(),
+    ),
+    GetPage(
+      name: '/MyBookingScreen',
+      page: () => const MyBookingScreen(),
+    ),
+    GetPage(
+      name: '/MyReportsScreen',
+      page: () => const MyReportsScreen(),
     ),
     GetPage(
       name: Routes.onBorardingScreen,
